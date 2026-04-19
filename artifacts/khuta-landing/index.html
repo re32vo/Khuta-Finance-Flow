@@ -44,6 +44,7 @@
         radial-gradient(circle at 88% 16%, rgba(55, 85, 138, 0.18), transparent 30%),
         linear-gradient(145deg, #02040a 0%, var(--navy) 48%, #030610 100%);
       overflow-x: hidden;
+      text-align: center;
     }
 
     body.modal-open {
@@ -79,6 +80,10 @@
       backdrop-filter: blur(18px);
     }
 
+    .site-header .container {
+      position: relative;
+    }
+
     .nav {
       min-height: 78px;
       display: flex;
@@ -87,15 +92,38 @@
       gap: 20px;
     }
 
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
     .logo {
       display: inline-flex;
-      align-items: baseline;
+      align-items: center;
       gap: 8px;
       white-space: nowrap;
       font-weight: 900;
       color: var(--gold);
       font-size: clamp(26px, 3.5vw, 42px);
       letter-spacing: -0.8px;
+    }
+
+    .logo-img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      border: 1px solid rgba(214, 180, 95, 0.28);
+      border-radius: 16px;
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .logo-text {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
     }
 
     .logo span {
@@ -137,6 +165,84 @@
       width: 100%;
     }
 
+    .hamburger {
+      width: 48px;
+      height: 48px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: 1px solid rgba(214, 180, 95, 0.28);
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      transition: transform var(--ease), border-color var(--ease), background var(--ease);
+    }
+
+    .hamburger:hover {
+      transform: translateY(-2px);
+      border-color: rgba(214, 180, 95, 0.52);
+      background: rgba(214, 180, 95, 0.08);
+    }
+
+    .hamburger span {
+      width: 23px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--gold-light);
+      transition: transform var(--ease), opacity var(--ease);
+    }
+
+    .hamburger.is-open span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.is-open span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 0;
+      width: min(320px, calc(100vw - 32px));
+      padding: 14px;
+      border: 1px solid rgba(214, 180, 95, 0.26);
+      border-radius: 20px;
+      background: rgba(5, 9, 20, 0.96);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.52);
+      backdrop-filter: blur(18px);
+      opacity: 0;
+      transform: translateY(-10px) scale(0.98);
+      pointer-events: none;
+      transition: opacity var(--ease), transform var(--ease);
+    }
+
+    .mobile-menu.is-open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 13px 14px;
+      border-radius: 14px;
+      color: var(--text);
+      font-weight: 800;
+      transition: background var(--ease), color var(--ease);
+    }
+
+    .mobile-menu a:hover {
+      background: rgba(214, 180, 95, 0.11);
+      color: var(--gold-light);
+    }
+
     .hero {
       position: relative;
       isolation: isolate;
@@ -174,6 +280,8 @@
     .hero-content {
       max-width: 850px;
       padding: 0 clamp(18px, 4vw, 72px);
+      margin-inline: auto;
+      text-align: center;
     }
 
     .eyebrow {
@@ -192,6 +300,7 @@
 
     .hero h1 {
       max-width: 830px;
+      margin-inline: auto;
       font-size: clamp(38px, 7vw, 86px);
       line-height: 1.08;
       font-weight: 900;
@@ -205,6 +314,7 @@
 
     .hero p {
       max-width: 735px;
+      margin-inline: auto;
       color: var(--muted);
       font-size: clamp(17px, 2.3vw, 24px);
       line-height: 1.9;
@@ -247,7 +357,8 @@
 
     .section-title {
       max-width: 780px;
-      margin-bottom: 30px;
+      margin: 0 auto 30px;
+      text-align: center;
     }
 
     .section-title.center {
@@ -303,6 +414,7 @@
 
     .feature-card {
       padding: 28px;
+      text-align: center;
     }
 
     .icon-mark,
@@ -315,7 +427,7 @@
       color: #07101c;
       background: linear-gradient(135deg, var(--gold-light), var(--gold));
       font-weight: 900;
-      margin-bottom: 20px;
+      margin: 0 auto 20px;
       box-shadow: 0 16px 34px rgba(214, 180, 95, 0.2);
     }
 
@@ -344,6 +456,7 @@
       position: relative;
       padding: 25px;
       overflow: hidden;
+      text-align: center;
     }
 
     .step-card::after {
@@ -359,25 +472,31 @@
 
     .products-head {
       display: flex;
+      flex-direction: column;
       align-items: end;
-      justify-content: space-between;
+      align-items: center;
+      justify-content: center;
       gap: 24px;
       margin-bottom: 24px;
+      text-align: center;
     }
 
     .products-note {
       max-width: 420px;
       color: var(--muted);
       line-height: 1.8;
+      margin-inline: auto;
     }
 
     .products-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: clamp(12px, 2.3vw, 30px);
+      justify-items: center;
     }
 
     .product-card {
+      width: 100%;
       min-width: 0;
       overflow: hidden;
       border: 1px solid rgba(214, 180, 95, 0.16);
@@ -432,6 +551,14 @@
       font-weight: 900;
     }
 
+    .product-price {
+      margin: -4px 0 14px;
+      color: var(--gold);
+      font-size: clamp(14px, 2.4vw, 19px);
+      font-weight: 900;
+      text-align: center;
+    }
+
     .details-btn,
     .buy-btn {
       width: 100%;
@@ -453,7 +580,8 @@
       width: 100%;
       border: 0;
       display: flex;
-      justify-content: space-between;
+      align-items: center;
+      justify-content: center;
       gap: 16px;
       padding: 20px 22px;
       color: var(--text);
@@ -461,7 +589,7 @@
       cursor: pointer;
       font-size: 18px;
       font-weight: 900;
-      text-align: right;
+      text-align: center;
     }
 
     .faq-question span:last-child {
@@ -498,6 +626,7 @@
       grid-template-columns: 1.3fr 1fr 1fr;
       gap: 28px;
       color: var(--muted);
+      text-align: center;
     }
 
     .footer h3,
@@ -696,7 +825,7 @@
 
     @media (max-width: 900px) {
       .nav {
-        align-items: flex-start;
+        align-items: center;
         min-height: auto;
         padding: 18px 0;
       }
@@ -747,6 +876,34 @@
         padding: 0 16px;
       }
 
+      .logo-img {
+        width: 42px;
+        height: 42px;
+        border-radius: 13px;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .logo span {
+        font-size: 12px;
+      }
+
+      .nav-actions {
+        gap: 8px;
+      }
+
+      .hamburger {
+        width: 43px;
+        height: 43px;
+        border-radius: 13px;
+      }
+
+      .mobile-menu {
+        width: min(300px, calc(100vw - 20px));
+      }
+
       .products-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
@@ -788,12 +945,29 @@
 <body>
   <header class="site-header">
     <div class="container nav">
-      <a href="#home" class="logo" aria-label="خطى للسيولة المالية">خطى <span>| للسيولة المالية</span></a>
-      <nav class="nav-links" aria-label="روابط الموقع">
+      <a href="#home" class="logo" aria-label="خطى للسيولة المالية">
+        <img class="logo-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='28' fill='%23050914'/%3E%3Cpath d='M31 77c18-4 31-16 39-40 4 18 10 32 21 40' fill='none' stroke='%23d6b45f' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='72' cy='36' r='8' fill='%23f4dc91'/%3E%3C/svg%3E" alt="شعار خطى">
+        <span class="logo-text">خطى <span>| للسيولة المالية</span></span>
+      </a>
+      <div class="nav-actions">
+        <nav class="nav-links" aria-label="روابط الموقع">
+          <a href="#home">الرئيسية</a>
+          <a href="#features">مميزاتنا</a>
+          <a href="#how">كيف نعمل</a>
+          <a href="#packages">باقات السيولة</a>
+          <a href="#faq">الأسئلة الشائعة</a>
+        </nav>
+        <button class="hamburger" id="menuToggle" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <nav class="mobile-menu" id="mobileMenu" aria-label="القائمة المنبثقة">
         <a href="#home">الرئيسية</a>
         <a href="#features">مميزاتنا</a>
         <a href="#how">كيف نعمل</a>
-        <a href="#packages">باقات السيولة</a>
+        <a href="#packages">المنتجات</a>
         <a href="#faq">الأسئلة الشائعة</a>
       </nav>
     </div>
@@ -875,7 +1049,7 @@
             <span>باقات السيولة</span>
             <h2>اختر الباقة المناسبة</h2>
           </div>
-          <p class="products-note">الشبكة تعرض منتجين فقط في كل سطر على الكمبيوتر والجوال، وكل بطاقة تظهر الصورة واسم الباقة وزر التفاصيل فقط.</p>
+          <p class="products-note">الشبكة تعرض منتجين فقط في كل سطر على الكمبيوتر والجوال، وكل بطاقة تظهر الصورة واسم الباقة ومبلغ السيولة وزر التفاصيل.</p>
         </div>
         <div class="products-grid" id="productsGrid"></div>
       </div>
@@ -991,6 +1165,8 @@
     const modalTotal = document.getElementById("modalTotal");
     const modalDescription = document.getElementById("modalDescription");
     const installmentsTable = document.getElementById("installmentsTable");
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
 
     function formatCurrency(value) {
       return new Intl.NumberFormat("ar-SA").format(value) + " ريال";
@@ -1005,6 +1181,7 @@
         </button>
         <div class="product-body">
           <h3 class="product-name">${product.name}</h3>
+          <div class="product-price">${formatCurrency(product.cash)}</div>
           <button class="details-btn" type="button">عرض التفاصيل</button>
         </div>
       `;
@@ -1055,12 +1232,34 @@
       });
     });
 
+    function closeMenu() {
+      mobileMenu.classList.remove("is-open");
+      menuToggle.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    }
+
+    menuToggle.addEventListener("click", event => {
+      event.stopPropagation();
+      const isOpen = mobileMenu.classList.toggle("is-open");
+      menuToggle.classList.toggle("is-open", isOpen);
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    mobileMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("click", event => {
+      if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) closeMenu();
+    });
+
     closeModal.addEventListener("click", closeProductModal);
     modal.addEventListener("click", event => {
       if (event.target === modal) closeProductModal();
     });
     document.addEventListener("keydown", event => {
       if (event.key === "Escape" && modal.classList.contains("is-open")) closeProductModal();
+      if (event.key === "Escape" && mobileMenu.classList.contains("is-open")) closeMenu();
     });
   </script>
 </body>
