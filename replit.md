@@ -18,7 +18,7 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 
 ## Artifacts
 
-- `artifacts/khuta-landing`: static RTL landing page for "خطى | للسيولة المالية" served at `/`. The user requested a frontend-only page with no database and no payment gateway. Main deliverable is `artifacts/khuta-landing/index.html`, a single HTML document with embedded CSS and simple FAQ accordion JavaScript.
+- `artifacts/khuta-landing`: static RTL product page for "خطى | للسيولة المالية عبر المجوهرات" served at `/`. The user requested a frontend-only page with no database and no payment gateway. Main deliverable is `artifacts/khuta-landing/index.html`, a single HTML document with embedded CSS and JavaScript. It displays seven product cards in a strict two-column CSS Grid on desktop and mobile, with modal product details and temporary `#` purchase links.
 
 ## Key Commands
 
@@ -27,6 +27,6 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
 - `pnpm --filter @workspace/api-server run dev` — run API server locally
-- `pnpm --filter @workspace/khuta-landing run dev` — run the Khuta landing page locally
+- `pnpm --filter @workspace/khuta-landing run dev` — run the Khuta product page locally
 
 See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
