@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>منتجات خطى | للسيولة المالية</title>
+  <title>خطى | للسيولة المالية</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="shortcut icon" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,17 +12,17 @@
   <style>
     :root {
       --navy: #050914;
-      --navy-2: #080f1f;
-      --navy-3: #0d172b;
-      --gold: #d7b35a;
-      --gold-2: #f2d98b;
-      --gold-3: #9f7b24;
-      --white: #f8f4ea;
-      --muted: #a9b2c2;
-      --line: rgba(215, 179, 90, 0.22);
-      --shadow: 0 28px 80px rgba(0, 0, 0, 0.48);
+      --navy-soft: #0a1224;
+      --navy-card: #0d172b;
+      --gold: #d6b45f;
+      --gold-light: #f4dc91;
+      --gold-dark: #9e7622;
+      --text: #fbf5e8;
+      --muted: #aab4c5;
+      --line: rgba(214, 180, 95, 0.24);
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.5);
       --radius: 22px;
-      --transition: 280ms ease;
+      --ease: 280ms ease;
     }
 
     * {
@@ -38,12 +38,16 @@
     body {
       min-height: 100vh;
       font-family: "Tajawal", Arial, sans-serif;
+      color: var(--text);
       background:
-        radial-gradient(circle at 20% 0%, rgba(215, 179, 90, 0.12), transparent 34%),
-        radial-gradient(circle at 80% 15%, rgba(54, 84, 136, 0.16), transparent 32%),
-        linear-gradient(145deg, #02040a 0%, var(--navy) 46%, #030610 100%);
-      color: var(--white);
+        radial-gradient(circle at 18% 0%, rgba(214, 180, 95, 0.13), transparent 34%),
+        radial-gradient(circle at 88% 16%, rgba(55, 85, 138, 0.18), transparent 30%),
+        linear-gradient(145deg, #02040a 0%, var(--navy) 48%, #030610 100%);
       overflow-x: hidden;
+    }
+
+    body.modal-open {
+      overflow: hidden;
     }
 
     a {
@@ -54,149 +58,348 @@
     button,
     a {
       -webkit-tap-highlight-color: transparent;
+      font-family: inherit;
     }
 
-    .page-shell {
+    img {
+      max-width: 100%;
+    }
+
+    .container {
       width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 28px 0 70px;
     }
 
-    .topbar {
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid rgba(214, 180, 95, 0.12);
+      background: rgba(3, 6, 14, 0.82);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 78px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      padding: 16px 0 34px;
+      gap: 20px;
     }
 
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .brand strong {
-      font-size: clamp(30px, 5vw, 52px);
-      line-height: 1;
+    .logo {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      white-space: nowrap;
       font-weight: 900;
       color: var(--gold);
-      letter-spacing: -1px;
+      font-size: clamp(26px, 3.5vw, 42px);
+      letter-spacing: -0.8px;
     }
 
-    .brand span {
+    .logo span {
       color: var(--muted);
-      font-size: clamp(14px, 2vw, 18px);
+      font-size: 16px;
+      font-weight: 500;
     }
 
-    .header-pill {
-      border: 1px solid var(--line);
-      color: var(--gold-2);
-      border-radius: 999px;
-      padding: 11px 18px;
-      background: rgba(255, 255, 255, 0.03);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      white-space: nowrap;
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 2.1vw, 28px);
+      color: #d8deea;
+      font-size: 15px;
       font-weight: 700;
-      font-size: clamp(12px, 1.8vw, 15px);
+    }
+
+    .nav-links a {
+      position: relative;
+      transition: color var(--ease);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -9px;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width var(--ease);
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     .hero {
       position: relative;
       isolation: isolate;
-      margin-bottom: 34px;
-      padding: clamp(34px, 6vw, 72px);
-      border: 1px solid rgba(215, 179, 90, 0.2);
-      border-radius: calc(var(--radius) + 10px);
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015)),
-        radial-gradient(circle at 50% 0%, rgba(215, 179, 90, 0.18), transparent 42%),
-        linear-gradient(160deg, rgba(8, 15, 31, 0.92), rgba(3, 6, 14, 0.96));
-      box-shadow: var(--shadow);
+      min-height: 680px;
+      display: grid;
+      align-items: center;
+      padding: 76px 0;
       overflow: hidden;
     }
 
     .hero::before {
       content: "";
       position: absolute;
-      inset: -30%;
+      inset: 34px max(16px, calc((100vw - 1180px) / 2)) 42px;
       z-index: -1;
-      background: conic-gradient(from 210deg, transparent, rgba(215, 179, 90, 0.12), transparent 28%);
-      animation: lightSweep 9s linear infinite;
-      opacity: 0.78;
+      border: 1px solid rgba(214, 180, 95, 0.18);
+      border-radius: 34px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.014)),
+        radial-gradient(circle at 62% 8%, rgba(244, 220, 145, 0.18), transparent 32%),
+        linear-gradient(160deg, rgba(10, 18, 36, 0.92), rgba(4, 8, 17, 0.96));
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      z-index: -2;
+      opacity: 0.75;
+      background: conic-gradient(from 230deg, transparent, rgba(214, 180, 95, 0.12), transparent 25%);
+      animation: glow 10s linear infinite;
+    }
+
+    .hero-content {
+      max-width: 850px;
+      padding: 0 clamp(18px, 4vw, 72px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--gold-light);
+      background: rgba(255, 255, 255, 0.035);
+      font-weight: 800;
+      font-size: 14px;
     }
 
     .hero h1 {
-      max-width: 840px;
-      font-size: clamp(34px, 7vw, 84px);
+      max-width: 830px;
+      font-size: clamp(38px, 7vw, 86px);
       line-height: 1.08;
       font-weight: 900;
-      letter-spacing: -1.8px;
-      background: linear-gradient(120deg, #ffffff 0%, var(--gold-2) 52%, var(--gold) 100%);
+      letter-spacing: -1.7px;
+      margin-bottom: 22px;
+      background: linear-gradient(120deg, #fff 0%, var(--gold-light) 54%, var(--gold) 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      margin-bottom: 18px;
     }
 
     .hero p {
-      max-width: 720px;
+      max-width: 735px;
       color: var(--muted);
-      font-size: clamp(16px, 2.5vw, 23px);
+      font-size: clamp(17px, 2.3vw, 24px);
       line-height: 1.9;
+      margin-bottom: 30px;
     }
 
-    .section-head {
+    .primary-link,
+    .details-btn,
+    .buy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      border: 1px solid rgba(244, 220, 145, 0.46);
+      border-radius: 15px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold) 48%, var(--gold-dark));
+      color: #070a10;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 16px 36px rgba(214, 180, 95, 0.2);
+      transition: transform var(--ease), filter var(--ease), box-shadow var(--ease);
+    }
+
+    .primary-link {
+      padding: 0 30px;
+      font-size: 18px;
+    }
+
+    .primary-link:hover,
+    .details-btn:hover,
+    .buy-btn:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.08);
+      box-shadow: 0 22px 48px rgba(214, 180, 95, 0.3);
+    }
+
+    section {
+      padding: 78px 0;
+    }
+
+    .section-title {
+      max-width: 780px;
+      margin-bottom: 30px;
+    }
+
+    .section-title.center {
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .section-title span {
+      display: block;
+      color: var(--gold);
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(30px, 5vw, 56px);
+      line-height: 1.16;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 17px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card,
+    .step-card,
+    .faq-item {
+      border: 1px solid rgba(214, 180, 95, 0.17);
+      border-radius: var(--radius);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018));
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+      transition: transform var(--ease), border-color var(--ease), background var(--ease);
+    }
+
+    .feature-card:hover,
+    .step-card:hover,
+    .faq-item:hover {
+      transform: translateY(-6px);
+      border-color: rgba(214, 180, 95, 0.38);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025));
+    }
+
+    .feature-card {
+      padding: 28px;
+    }
+
+    .icon-mark,
+    .step-num {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      color: #07101c;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      font-weight: 900;
+      margin-bottom: 20px;
+      box-shadow: 0 16px 34px rgba(214, 180, 95, 0.2);
+    }
+
+    .feature-card h3,
+    .step-card h3 {
+      font-size: 23px;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .feature-card p,
+    .step-card p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      counter-reset: step;
+    }
+
+    .step-card {
+      position: relative;
+      padding: 25px;
+      overflow: hidden;
+    }
+
+    .step-card::after {
+      content: "";
+      position: absolute;
+      inset-inline-start: -35px;
+      bottom: -35px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(214, 180, 95, 0.07);
+    }
+
+    .products-head {
       display: flex;
       align-items: end;
       justify-content: space-between;
-      gap: 20px;
-      margin: 34px 0 22px;
+      gap: 24px;
+      margin-bottom: 24px;
     }
 
-    .section-head h2 {
-      font-size: clamp(28px, 4.5vw, 48px);
-      font-weight: 900;
-      letter-spacing: -0.8px;
-    }
-
-    .section-head p {
+    .products-note {
+      max-width: 420px;
       color: var(--muted);
-      font-size: 16px;
-      max-width: 450px;
       line-height: 1.8;
     }
 
     .products-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: clamp(12px, 2.4vw, 30px);
+      gap: clamp(12px, 2.3vw, 30px);
     }
 
     .product-card {
       min-width: 0;
-      border: 1px solid rgba(215, 179, 90, 0.16);
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.028);
       overflow: hidden;
-      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.32);
-      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background var(--transition);
+      border: 1px solid rgba(214, 180, 95, 0.16);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.027);
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.34);
+      transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
     }
 
     .product-card:hover {
       transform: translateY(-7px);
-      border-color: rgba(215, 179, 90, 0.44);
-      background: rgba(255, 255, 255, 0.045);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.48);
+      border-color: rgba(214, 180, 95, 0.42);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.48);
     }
 
     .product-image-button {
       display: block;
       width: 100%;
       border: 0;
+      overflow: hidden;
       background: transparent;
       cursor: pointer;
-      overflow: hidden;
     }
 
     .product-image {
@@ -204,43 +407,119 @@
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
-      transition: transform 520ms ease, filter 520ms ease;
+      transition: transform 540ms ease, filter 540ms ease;
     }
 
     .product-card:hover .product-image {
       transform: scale(1.065);
-      filter: saturate(1.06) contrast(1.05);
+      filter: saturate(1.07) contrast(1.05);
     }
 
-    .card-action {
+    .product-body {
       padding: clamp(10px, 2.4vw, 18px);
-      background: linear-gradient(180deg, rgba(8, 15, 31, 0.72), rgba(4, 8, 17, 0.95));
+      background: linear-gradient(180deg, rgba(10, 18, 36, 0.74), rgba(4, 8, 17, 0.96));
+    }
+
+    .product-name {
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      text-align: center;
+      color: var(--gold-light);
+      font-size: clamp(15px, 2.5vw, 22px);
+      font-weight: 900;
     }
 
     .details-btn,
     .buy-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       width: 100%;
-      min-height: 48px;
-      border: 1px solid rgba(242, 217, 139, 0.42);
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--gold-2), var(--gold) 45%, var(--gold-3));
-      color: #090b10;
-      font-family: inherit;
-      font-size: clamp(13px, 2.4vw, 17px);
-      font-weight: 900;
-      cursor: pointer;
-      box-shadow: 0 14px 30px rgba(215, 179, 90, 0.18);
-      transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+      font-size: clamp(13px, 2.3vw, 17px);
     }
 
-    .details-btn:hover,
-    .buy-btn:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.08);
-      box-shadow: 0 18px 42px rgba(215, 179, 90, 0.28);
+    .faq-list {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      border: 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 22px;
+      color: var(--text);
+      background: transparent;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 900;
+      text-align: right;
+    }
+
+    .faq-question span:last-child {
+      color: var(--gold);
+      transition: transform var(--ease);
+    }
+
+    .faq-item.active .faq-question span:last-child {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      color: var(--muted);
+      line-height: 1.85;
+      padding: 0 22px;
+      transition: max-height var(--ease), padding var(--ease);
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 170px;
+      padding: 0 22px 22px;
+    }
+
+    .footer {
+      padding: 44px 0;
+      border-top: 1px solid rgba(214, 180, 95, 0.14);
+      background: rgba(2, 5, 11, 0.45);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 28px;
+      color: var(--muted);
+    }
+
+    .footer h3,
+    .footer h4 {
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+
+    .footer p,
+    .footer a {
+      line-height: 1.9;
+      font-size: 15px;
+      transition: color var(--ease);
+    }
+
+    .footer a:hover {
+      color: var(--gold-light);
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 6px;
     }
 
     .modal-overlay {
@@ -254,7 +533,7 @@
       backdrop-filter: blur(12px);
       opacity: 0;
       pointer-events: none;
-      transition: opacity var(--transition);
+      transition: opacity var(--ease);
     }
 
     .modal-overlay.is-open {
@@ -267,14 +546,14 @@
       width: min(980px, 100%);
       max-height: min(90vh, 900px);
       overflow: auto;
-      border: 1px solid rgba(215, 179, 90, 0.3);
+      border: 1px solid rgba(214, 180, 95, 0.3);
       border-radius: 28px;
       background:
-        radial-gradient(circle at 82% 0%, rgba(215, 179, 90, 0.14), transparent 34%),
+        radial-gradient(circle at 82% 0%, rgba(214, 180, 95, 0.14), transparent 34%),
         linear-gradient(145deg, rgba(12, 22, 42, 0.98), rgba(4, 8, 17, 0.98));
       box-shadow: 0 38px 120px rgba(0, 0, 0, 0.65);
       transform: translateY(20px) scale(0.98);
-      transition: transform var(--transition);
+      transition: transform var(--ease);
     }
 
     .modal-overlay.is-open .modal {
@@ -286,18 +565,18 @@
       top: 14px;
       margin: 14px 14px -58px auto;
       z-index: 2;
-      display: grid;
-      place-items: center;
       width: 44px;
       height: 44px;
-      border: 1px solid rgba(215, 179, 90, 0.32);
+      border: 1px solid rgba(214, 180, 95, 0.34);
       border-radius: 50%;
-      background: rgba(3, 6, 14, 0.82);
-      color: var(--gold-2);
-      font-size: 26px;
+      display: grid;
+      place-items: center;
+      background: rgba(3, 6, 14, 0.84);
+      color: var(--gold-light);
+      font-size: 28px;
       line-height: 1;
       cursor: pointer;
-      transition: transform var(--transition), background var(--transition), color var(--transition);
+      transition: transform var(--ease), background var(--ease), color var(--ease);
     }
 
     .close-btn:hover {
@@ -318,39 +597,45 @@
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
+      border: 1px solid rgba(214, 180, 95, 0.2);
       border-radius: 22px;
-      border: 1px solid rgba(215, 179, 90, 0.2);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.36);
+      box-shadow: 0 22px 62px rgba(0, 0, 0, 0.36);
     }
 
     .modal-info h3 {
       font-size: clamp(28px, 4vw, 48px);
       line-height: 1.1;
-      color: var(--gold-2);
+      color: var(--gold-light);
       margin-bottom: 12px;
       font-weight: 900;
     }
 
-    .cash-box {
-      margin: 18px 0;
-      padding: 18px;
-      border: 1px solid rgba(215, 179, 90, 0.25);
+    .modal-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .stat-box {
+      padding: 16px;
+      border: 1px solid rgba(214, 180, 95, 0.24);
       border-radius: 18px;
       background: rgba(255, 255, 255, 0.04);
     }
 
-    .cash-box span {
+    .stat-box span {
       display: block;
       color: var(--muted);
-      font-size: 15px;
-      margin-bottom: 4px;
+      font-size: 14px;
+      margin-bottom: 5px;
     }
 
-    .cash-box strong {
+    .stat-box strong {
       display: block;
-      font-size: clamp(28px, 4.5vw, 46px);
-      color: var(--white);
-      line-height: 1.1;
+      color: var(--text);
+      font-size: clamp(22px, 3.6vw, 34px);
+      line-height: 1.12;
       font-weight: 900;
     }
 
@@ -362,7 +647,7 @@
     }
 
     .installments-title {
-      color: var(--gold-2);
+      color: var(--gold-light);
       font-size: 18px;
       font-weight: 900;
       margin-bottom: 10px;
@@ -375,67 +660,91 @@
       border-radius: 16px;
       margin-bottom: 20px;
       background: rgba(2, 5, 11, 0.32);
-      border: 1px solid rgba(215, 179, 90, 0.18);
+      border: 1px solid rgba(214, 180, 95, 0.18);
     }
 
     th,
     td {
       padding: 13px 12px;
       text-align: center;
-      border-bottom: 1px solid rgba(215, 179, 90, 0.13);
+      border-bottom: 1px solid rgba(214, 180, 95, 0.13);
       font-size: clamp(12px, 2.3vw, 15px);
     }
 
     th {
-      color: var(--gold-2);
+      color: var(--gold-light);
       font-weight: 900;
-      background: rgba(215, 179, 90, 0.07);
+      background: rgba(214, 180, 95, 0.07);
     }
 
     tr:last-child td {
       border-bottom: 0;
     }
 
-    .modal-footer {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
     .hint {
       color: var(--muted);
+      margin-top: 10px;
       font-size: 13px;
       line-height: 1.7;
     }
 
-    @keyframes lightSweep {
+    @keyframes glow {
       to {
         transform: rotate(360deg);
       }
     }
 
-    @media (max-width: 760px) {
-      .page-shell {
-        width: min(100% - 20px, 1180px);
-        padding-top: 18px;
+    @media (max-width: 900px) {
+      .nav {
+        align-items: flex-start;
+        min-height: auto;
+        padding: 18px 0;
       }
 
-      .topbar {
-        align-items: flex-start;
-        padding-bottom: 22px;
+      .nav-links {
+        display: none;
       }
 
       .hero {
-        padding: 28px 18px;
-        border-radius: 24px;
+        min-height: 590px;
+        padding: 44px 0;
       }
 
-      .section-head {
+      .features-grid,
+      .steps-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .products-head {
         display: block;
       }
 
-      .section-head p {
+      .products-note {
         margin-top: 8px;
+      }
+
+      .modal-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 20px, 1180px);
+      }
+
+      section {
+        padding: 52px 0;
+      }
+
+      .hero::before {
+        inset: 12px 10px 18px;
+        border-radius: 24px;
+      }
+
+      .hero-content {
+        padding: 0 16px;
       }
 
       .products-grid {
@@ -447,8 +756,13 @@
         border-radius: 16px;
       }
 
-      .card-action {
+      .product-body {
         padding: 8px;
+      }
+
+      .product-name {
+        min-height: 42px;
+        margin-bottom: 8px;
       }
 
       .details-btn {
@@ -456,50 +770,170 @@
         border-radius: 11px;
       }
 
-      .modal-content {
-        grid-template-columns: 1fr;
-        padding: 18px;
-        padding-top: 68px;
-      }
-
       .modal {
         border-radius: 22px;
       }
 
-      .modal-footer {
-        display: block;
+      .modal-content {
+        padding: 18px;
+        padding-top: 68px;
       }
 
-      .hint {
-        margin-top: 10px;
+      .modal-stats {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-  <main class="page-shell">
-    <header class="topbar">
-      <div class="brand" aria-label="خطى للسيولة المالية">
-        <strong>خطى</strong>
-        <span>للسيولة المالية عبر المجوهرات</span>
-      </div>
-      <div class="header-pill">7 باقات مختارة</div>
-    </header>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#home" class="logo" aria-label="خطى للسيولة المالية">خطى <span>| للسيولة المالية</span></a>
+      <nav class="nav-links" aria-label="روابط الموقع">
+        <a href="#home">الرئيسية</a>
+        <a href="#features">مميزاتنا</a>
+        <a href="#how">كيف نعمل</a>
+        <a href="#packages">باقات السيولة</a>
+        <a href="#faq">الأسئلة الشائعة</a>
+      </nav>
+    </div>
+  </header>
 
-    <section class="hero">
-      <h1>باقات سيولة فاخرة بخطوات واضحة ومريحة</h1>
-      <p>اختر الباقة المناسبة، واستعرض تفاصيل السيولة والدفعات قبل الانتقال للمتجر الأساسي لإتمام الطلب.</p>
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-content">
+        <div class="eyebrow">حل سيولة عبر المجوهرات بالتقسيط</div>
+        <h1>سيولتك المالية صارت أسرع، بخطوات بسيطة ومريحة</h1>
+        <p>اطلب باقتك من المجوهرات، نحول لك قيمتها كاش فوراً، وقسط براحتك على 4 دفعات ميسرة.</p>
+        <a href="#packages" class="primary-link">تصفح باقات خطى</a>
+      </div>
     </section>
 
-    <section aria-labelledby="products-title">
-      <div class="section-head">
-        <h2 id="products-title">منتجات خطى</h2>
-        <p>كل بطاقة تعرض صورة المنتج فقط وزر التفاصيل، وتظهر كامل معلومات الباقة داخل نافذة مستقلة.</p>
+    <section id="features">
+      <div class="container">
+        <div class="section-title center">
+          <span>مميزاتنا</span>
+          <h2>لماذا تختار خطى؟</h2>
+          <p>تجربة واضحة ومريحة تمنح العميل سيولة نقدية بطريقة منظمة، مع واجهة شفافة من اختيار الباقة حتى التحويل.</p>
+        </div>
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="icon-mark">24h</div>
+            <h3>سرعة التنفيذ</h3>
+            <p>نحول لك الكاش بمجرد إتمام طلبك وفق آلية واضحة ومباشرة.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-mark">4x</div>
+            <h3>تقسيط مريح</h3>
+            <p>سدد قيمة الباقة على 4 دفعات شهرية بدون ضغط مالي.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-mark">✓</div>
+            <h3>أمان وموثوقية</h3>
+            <p>كل التفاصيل ظاهرة قبل الطلب، من مبلغ السيولة حتى إجمالي التقسيط.</p>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <div class="products-grid" id="productsGrid"></div>
+    <section id="how">
+      <div class="container">
+        <div class="section-title center">
+          <span>كيف تعمل الخدمة</span>
+          <h2>أربع خطوات بسيطة للحصول على السيولة</h2>
+          <p>صممنا الرحلة لتكون مختصرة ومفهومة، من اختيار المجوهرات حتى استلام المبلغ وتقسيطه.</p>
+        </div>
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-num">1</div>
+            <h3>اختر باقة المجوهرات</h3>
+            <p>حدد الباقة المناسبة لاحتياجك من قسم باقات السيولة.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-num">2</div>
+            <h3>نشتري منك المجوهرات</h3>
+            <p>بعد اختيار الباقة، نرتب شراء المجوهرات منك قبل شحنها.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-num">3</div>
+            <h3>تستلم المبلغ كاش</h3>
+            <p>يصلك مبلغ السيولة في حسابك البنكي فور اكتمال الإجراءات.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-num">4</div>
+            <h3>تقسط براحتك</h3>
+            <p>تسدد إجمالي مبلغ الباقة على 4 أشهر بدفعات واضحة.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="packages">
+      <div class="container">
+        <div class="products-head">
+          <div class="section-title">
+            <span>باقات السيولة</span>
+            <h2>اختر الباقة المناسبة</h2>
+          </div>
+          <p class="products-note">الشبكة تعرض منتجين فقط في كل سطر على الكمبيوتر والجوال، وكل بطاقة تظهر الصورة واسم الباقة وزر التفاصيل فقط.</p>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-title center">
+          <span>الأسئلة الشائعة</span>
+          <h2>إجابات سريعة قبل الطلب</h2>
+        </div>
+        <div class="faq-list">
+          <article class="faq-item active">
+            <button class="faq-question" type="button"><span>متى يوصلني المبلغ؟</span><span>+</span></button>
+            <div class="faq-answer">يتم تحويل مبلغ السيولة فور الانتهاء من عملية شراء الباقة واكتمال بيانات الطلب.</div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button"><span>كيف يتم التقسيط؟</span><span>+</span></button>
+            <div class="faq-answer">يتم تقسيم إجمالي مبلغ الباقة على 4 دفعات شهرية واضحة كما يظهر داخل نافذة تفاصيل كل باقة.</div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button"><span>هل توجد بوابة دفع داخل هذه الصفحة؟</span><span>+</span></button>
+            <div class="faq-answer">لا، هذه واجهة ثابتة فقط. أزرار الشراء النهائية عبارة عن روابط مؤقتة تنقل للمتجر الأساسي عند ربطها لاحقاً.</div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button"><span>هل الخدمة تتطلب كفيل؟</span><span>+</span></button>
+            <div class="faq-answer">لا، الخدمة مصممة كتقسيط ميسر ومباشر عبر باقات المجوهرات.</div>
+          </article>
+        </div>
+      </div>
     </section>
   </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>خطى</h3>
+        <p>واجهة متجر فاخرة لخدمة السيولة المالية عبر باقات المجوهرات بالتقسيط.</p>
+      </div>
+      <div>
+        <h4>روابط سريعة</h4>
+        <div class="footer-links">
+          <a href="#home">الرئيسية</a>
+          <a href="#features">مميزاتنا</a>
+          <a href="#how">كيف نعمل</a>
+          <a href="#packages">باقات السيولة</a>
+        </div>
+      </div>
+      <div>
+        <h4>تواصل معنا</h4>
+        <div class="footer-links">
+          <a href="mailto:support@khuta.com">support@khuta.com</a>
+          <a href="tel:+966500000000">+966 50 000 0000</a>
+          <a href="#">الرياض، المملكة العربية السعودية</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <div class="modal-overlay" id="productModal" aria-hidden="true">
     <article class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -508,12 +942,18 @@
         <img class="modal-image" id="modalImage" src="" alt="">
         <div class="modal-info">
           <h3 id="modalTitle"></h3>
-          <div class="cash-box">
-            <span>مبلغ السيولة الكاش</span>
-            <strong id="modalCash"></strong>
+          <div class="modal-stats">
+            <div class="stat-box">
+              <span>مبلغ السيولة</span>
+              <strong id="modalCash"></strong>
+            </div>
+            <div class="stat-box">
+              <span>إجمالي مبلغ الباقة</span>
+              <strong id="modalTotal"></strong>
+            </div>
           </div>
           <p class="description" id="modalDescription"></p>
-          <div class="installments-title">جدول التقسيط على 4 دفعات</div>
+          <div class="installments-title">جدول التقسيط على 4 دفعات شهرية</div>
           <table aria-label="جدول تقسيط الباقة">
             <thead>
               <tr>
@@ -524,10 +964,8 @@
             </thead>
             <tbody id="installmentsTable"></tbody>
           </table>
-          <div class="modal-footer">
-            <a href="#" class="buy-btn">شراء الباقة الآن</a>
-            <p class="hint">سيتم نقل العميل إلى المتجر الأساسي عند ربط الرابط الحقيقي لاحقاً.</p>
-          </div>
+          <a href="#" class="buy-btn">شراء الباقة الآن</a>
+          <p class="hint">الرابط مؤقت وسيتم استبداله برابط المتجر الأساسي عند الإطلاق.</p>
         </div>
       </div>
     </article>
@@ -535,62 +973,13 @@
 
   <script>
     const products = [
-      {
-        name: "باقة خطى 3000",
-        cash: "3,000 ريال",
-        total: 5000,
-        image: "/package-1.png",
-        alt: "مجوهرات فاخرة لباقة خطى 3000",
-        description: "باقة مناسبة للاحتياج السريع، تمنح العميل سيولة كاش مباشرة مقابل باقة مجوهرات يتم سداد قيمتها على أربع دفعات ميسرة."
-      },
-      {
-        name: "باقة خطى 5000",
-        cash: "5,000 ريال",
-        total: 7600,
-        image: "/package-2.png",
-        alt: "مجوهرات فاخرة لباقة خطى 5000",
-        description: "خيار متوازن لمن يبحث عن سيولة أعلى مع جدول دفع واضح ومريح، وتجربة طلب بسيطة عبر المتجر الأساسي."
-      },
-      {
-        name: "باقة خطى 7000",
-        cash: "7,000 ريال",
-        total: 10400,
-        image: "/package-3.png",
-        alt: "مجوهرات فاخرة لباقة خطى 7000",
-        description: "باقة عملية تمنح مرونة أكبر في السيولة، مع تقسيم إجمالي مبلغ التقسيط على أربع دفعات شهرية واضحة."
-      },
-      {
-        name: "باقة خطى 10000",
-        cash: "10,000 ريال",
-        total: 15000,
-        image: "/package-1.png",
-        alt: "مجوهرات فاخرة لباقة خطى 10000",
-        description: "باقة فاخرة للاحتياج الأعلى، مصممة لمن يرغب بسيولة أكبر مع الالتزام بسداد مريح ومنظم على أربع دفعات."
-      },
-      {
-        name: "باقة خطى 15000",
-        cash: "15,000 ريال",
-        total: 21800,
-        image: "/package-2.png",
-        alt: "مجوهرات فاخرة لباقة خطى 15000",
-        description: "حل سيولة متقدم بقيمة أكبر، يتيح للعميل معرفة تفاصيل الدفعات بالكامل قبل الانتقال للشراء."
-      },
-      {
-        name: "باقة خطى 20000",
-        cash: "20,000 ريال",
-        total: 29000,
-        image: "/package-3.png",
-        alt: "مجوهرات فاخرة لباقة خطى 20000",
-        description: "باقة مخصصة لمن يحتاج سيولة عالية مع عرض واضح لإجمالي مبلغ التقسيط وجدولة الدفعات الأربعة."
-      },
-      {
-        name: "باقة خطى 30000",
-        cash: "30,000 ريال",
-        total: 43000,
-        image: "/package-1.png",
-        alt: "مجوهرات فاخرة لباقة خطى 30000",
-        description: "أعلى باقات خطى الافتراضية، تجمع بين السيولة الكبيرة وتجربة عرض تفاصيل منظمة قبل اتخاذ قرار الشراء."
-      }
+      { name: "باقة خطى 3000", cash: 3000, total: 5000, image: "/package-1.png", alt: "مجوهرات فاخرة لباقة خطى 3000" },
+      { name: "باقة خطى 5000", cash: 5000, total: 7600, image: "/package-2.png", alt: "مجوهرات فاخرة لباقة خطى 5000" },
+      { name: "باقة خطى 7000", cash: 7000, total: 10400, image: "/package-3.png", alt: "مجوهرات فاخرة لباقة خطى 7000" },
+      { name: "باقة خطى 10000", cash: 10000, total: 15000, image: "/package-1.png", alt: "مجوهرات فاخرة لباقة خطى 10000" },
+      { name: "باقة خطى 15000", cash: 15000, total: 21800, image: "/package-2.png", alt: "مجوهرات فاخرة لباقة خطى 15000" },
+      { name: "باقة خطى 20000", cash: 20000, total: 29000, image: "/package-3.png", alt: "مجوهرات فاخرة لباقة خطى 20000" },
+      { name: "باقة خطى 30000", cash: 30000, total: 43000, image: "/package-1.png", alt: "مجوهرات فاخرة لباقة خطى 30000" }
     ];
 
     const productsGrid = document.getElementById("productsGrid");
@@ -599,6 +988,7 @@
     const modalImage = document.getElementById("modalImage");
     const modalTitle = document.getElementById("modalTitle");
     const modalCash = document.getElementById("modalCash");
+    const modalTotal = document.getElementById("modalTotal");
     const modalDescription = document.getElementById("modalDescription");
     const installmentsTable = document.getElementById("installmentsTable");
 
@@ -613,7 +1003,8 @@
         <button class="product-image-button" type="button" aria-label="عرض تفاصيل ${product.name}">
           <img class="product-image" src="${product.image}" alt="${product.alt}">
         </button>
-        <div class="card-action">
+        <div class="product-body">
+          <h3 class="product-name">${product.name}</h3>
           <button class="details-btn" type="button">عرض التفاصيل</button>
         </div>
       `;
@@ -628,8 +1019,9 @@
       modalImage.src = product.image;
       modalImage.alt = product.alt;
       modalTitle.textContent = product.name;
-      modalCash.textContent = product.cash;
-      modalDescription.textContent = product.description;
+      modalCash.textContent = formatCurrency(product.cash);
+      modalTotal.textContent = formatCurrency(product.total);
+      modalDescription.textContent = "بعد اختيار الباقة، يتم شراء المجوهرات بالتقسيط ثم إعادة بيعها لنا وفق الآلية الموضحة، ليحصل العميل على مبلغ السيولة كاش مع تقسيط إجمالي مبلغ الباقة على 4 دفعات شهرية مريحة.";
       installmentsTable.innerHTML = "";
 
       for (let i = 1; i <= 4; i++) {
@@ -644,29 +1036,31 @@
 
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
+      document.body.classList.add("modal-open");
     }
 
     function closeProductModal() {
       modal.classList.remove("is-open");
       modal.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
+      document.body.classList.remove("modal-open");
     }
 
     products.forEach((product, index) => {
       productsGrid.appendChild(createCard(product, index));
     });
 
+    document.querySelectorAll(".faq-question").forEach(button => {
+      button.addEventListener("click", () => {
+        button.closest(".faq-item").classList.toggle("active");
+      });
+    });
+
     closeModal.addEventListener("click", closeProductModal);
     modal.addEventListener("click", event => {
-      if (event.target === modal) {
-        closeProductModal();
-      }
+      if (event.target === modal) closeProductModal();
     });
     document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && modal.classList.contains("is-open")) {
-        closeProductModal();
-      }
+      if (event.key === "Escape" && modal.classList.contains("is-open")) closeProductModal();
     });
   </script>
 </body>
