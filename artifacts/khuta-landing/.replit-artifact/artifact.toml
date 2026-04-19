@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "خطى للسيولة المالية"
+version = "1.0.0"
+id = "artifacts/khuta-landing"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18241
+
+[services.development]
+run = "pnpm --filter @workspace/khuta-landing run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/khuta-landing", "run", "build" ]
+publicDir = "artifacts/khuta-landing/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18241"
+BASE_PATH = "/"

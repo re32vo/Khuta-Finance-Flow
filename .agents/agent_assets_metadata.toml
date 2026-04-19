@@ -1,0 +1,20 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "6cCTK7Xnf-CUcT4RXGUOX"
+uri = "file://artifacts/khuta-landing/public/package-1.png"
+type = "image"
+title = "Luxury gold jewelry necklace"
+
+[[generated]]
+id = "bvA26pUr77-C3bKRUqp_c"
+uri = "file://artifacts/khuta-landing/public/package-2.png"
+type = "image"
+title = "Luxury gold bracelet and rings"
+
+[[generated]]
+id = "1SuAlU_YUyDGON8Gam-B0"
+uri = "file://artifacts/khuta-landing/public/package-3.png"
+type = "image"
+title = "Luxury gold jewelry set"
