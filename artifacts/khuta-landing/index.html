@@ -99,6 +99,29 @@
       gap: 14px;
     }
 
+    .header-contact {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid rgba(244, 220, 145, 0.36);
+      border-radius: 14px;
+      background: rgba(214, 180, 95, 0.08);
+      color: var(--gold-light);
+      font-size: 14px;
+      font-weight: 900;
+      white-space: nowrap;
+      transition: transform var(--ease), background var(--ease), color var(--ease), border-color var(--ease);
+    }
+
+    .header-contact:hover {
+      transform: translateY(-2px);
+      border-color: rgba(244, 220, 145, 0.58);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #070a10;
+    }
+
     .logo {
       display: inline-flex;
       align-items: center;
@@ -834,6 +857,10 @@
         display: none;
       }
 
+      .header-contact {
+        display: none;
+      }
+
       .hero {
         min-height: 590px;
         padding: 44px 0;
@@ -957,6 +984,7 @@
           <a href="#packages">باقات السيولة</a>
           <a href="#faq">الأسئلة الشائعة</a>
         </nav>
+        <a href="#contact" class="header-contact">تواصل معنا</a>
         <button class="hamburger" id="menuToggle" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileMenu">
           <span></span>
           <span></span>
@@ -969,6 +997,7 @@
         <a href="#how">كيف نعمل</a>
         <a href="#packages">المنتجات</a>
         <a href="#faq">الأسئلة الشائعة</a>
+        <a href="#contact">تواصل معنا</a>
       </nav>
     </div>
   </header>
@@ -1071,6 +1100,10 @@
             <div class="faq-answer">يتم تقسيم إجمالي مبلغ الباقة على 4 دفعات شهرية واضحة كما يظهر داخل نافذة تفاصيل كل باقة.</div>
           </article>
           <article class="faq-item">
+            <button class="faq-question" type="button"><span>ماذا لو ما عندي الدفعة الأولى؟</span><span>+</span></button>
+            <div class="faq-answer">إذا لم تتوفر لديك الدفعة الأولى، يمكن لفريق خطى دفعها عنك، ثم يتم خصم قيمتها من مبلغ السلفة قبل التحويل بشكل واضح ومتفق عليه.</div>
+          </article>
+          <article class="faq-item">
             <button class="faq-question" type="button"><span>هل توجد بوابة دفع داخل هذه الصفحة؟</span><span>+</span></button>
             <div class="faq-answer">لا، هذه واجهة تعريفية فقط. أزرار الشراء تنقل العميل إلى متجر المجوهرات الخارجي عند إضافة روابط المنتجات النهائية.</div>
           </article>
@@ -1083,7 +1116,7 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer" id="contact">
     <div class="container footer-grid">
       <div>
         <h3>خطى</h3>
@@ -1199,7 +1232,7 @@
       modalTitle.textContent = product.name;
       modalCash.textContent = formatCurrency(product.cash);
       modalTotal.textContent = formatCurrency(product.total);
-      modalDescription.textContent = "هذا الموقع يعرض باقات السيولة ويوضح تفاصيلها فقط. عند الضغط على شراء الباقة الآن سيتم تحويلك إلى صفحة المنتج في متجر المجوهرات الخارجي لإتمام الطلب، وبعد وصول الطلب يتواصل فريق خطى معك لاستكمال إجراءات السلفة وتحويل مبلغ السيولة حسب الباقة المختارة.";
+      modalDescription.textContent = "هذا الموقع يعرض باقات السيولة ويوضح تفاصيلها فقط. عند الضغط على شراء الباقة الآن سيتم تحويلك إلى صفحة المنتج في متجر المجوهرات الخارجي لإتمام الطلب، وبعد وصول الطلب يتواصل فريق خطى معك لاستكمال إجراءات السلفة وتحويل مبلغ السيولة حسب الباقة المختارة. وإذا لم تتوفر لديك الدفعة الأولى، يمكن دفعها عنك وخصم قيمتها من مبلغ السلفة قبل التحويل.";
       modalBuy.href = product.storeUrl;
       installmentsTable.innerHTML = "";
 
@@ -1230,7 +1263,10 @@
 
     document.querySelectorAll(".faq-question").forEach(button => {
       button.addEventListener("click", () => {
-        button.closest(".faq-item").classList.toggle("active");
+        const currentItem = button.closest(".faq-item");
+        const wasActive = currentItem.classList.contains("active");
+        document.querySelectorAll(".faq-item").forEach(item => item.classList.remove("active"));
+        if (!wasActive) currentItem.classList.add("active");
       });
     });
 
