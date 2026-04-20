@@ -1015,28 +1015,28 @@
         <div class="section-title center">
           <span>كيف تعمل الخدمة</span>
           <h2>أربع خطوات بسيطة للحصول على السيولة</h2>
-          <p>صممنا الرحلة لتكون مختصرة ومفهومة، من اختيار المجوهرات حتى استلام المبلغ وتقسيطه.</p>
+          <p>هذا الموقع مخصص لعرض باقات السيولة وشرح آلية الخدمة فقط، أما إتمام الطلب فيكون عبر متجرنا الآخر المخصص للمجوهرات.</p>
         </div>
         <div class="steps-grid">
           <article class="step-card">
             <div class="step-num">1</div>
-            <h3>اختر باقة المجوهرات</h3>
-            <p>حدد الباقة المناسبة لاحتياجك من قسم باقات السيولة.</p>
+            <h3>اختر الباقة المناسبة</h3>
+            <p>تصفح باقات السيولة في هذا الموقع واختر المبلغ المناسب لاحتياجك من بين الباقات المعروضة.</p>
           </article>
           <article class="step-card">
             <div class="step-num">2</div>
-            <h3>نشتري منك المجوهرات</h3>
-            <p>بعد اختيار الباقة، نرتب شراء المجوهرات منك قبل شحنها.</p>
+            <h3>انتقل لمتجر المجوهرات</h3>
+            <p>عند الضغط على زر شراء الباقة الآن، يتم نقلك إلى صفحة المنتج في متجرنا الآخر الخاص بالمجوهرات فقط.</p>
           </article>
           <article class="step-card">
             <div class="step-num">3</div>
-            <h3>تستلم المبلغ كاش</h3>
-            <p>يصلك مبلغ السيولة في حسابك البنكي فور اكتمال الإجراءات.</p>
+            <h3>أكمل طلب المجوهرات</h3>
+            <p>أتمم طلب المجوهرات من المتجر الخارجي بشكل طبيعي، علماً أن المتجر لا يعرض أي تفاصيل تخص السيولة أو السلفة.</p>
           </article>
           <article class="step-card">
             <div class="step-num">4</div>
-            <h3>تقسط براحتك</h3>
-            <p>تسدد إجمالي مبلغ الباقة على 4 أشهر بدفعات واضحة.</p>
+            <h3>نتواصل معك بخصوص السلفة</h3>
+            <p>بعد وصول طلبك، يتواصل فريق خطى معك لاستكمال تفاصيل السلفة وتحويل مبلغ السيولة حسب الباقة المختارة.</p>
           </article>
         </div>
       </div>
@@ -1072,7 +1072,7 @@
           </article>
           <article class="faq-item">
             <button class="faq-question" type="button"><span>هل توجد بوابة دفع داخل هذه الصفحة؟</span><span>+</span></button>
-            <div class="faq-answer">لا، هذه واجهة ثابتة فقط. أزرار الشراء النهائية عبارة عن روابط مؤقتة تنقل للمتجر الأساسي عند ربطها لاحقاً.</div>
+            <div class="faq-answer">لا، هذه واجهة تعريفية فقط. أزرار الشراء تنقل العميل إلى متجر المجوهرات الخارجي عند إضافة روابط المنتجات النهائية.</div>
           </article>
           <article class="faq-item">
             <button class="faq-question" type="button"><span>هل الخدمة تتطلب كفيل؟</span><span>+</span></button>
@@ -1138,7 +1138,7 @@
             </thead>
             <tbody id="installmentsTable"></tbody>
           </table>
-          <a href="#" class="buy-btn">شراء الباقة الآن</a>
+          <a href="#" class="buy-btn" id="modalBuy">شراء الباقة الآن</a>
           <p class="hint">الرابط مؤقت وسيتم استبداله برابط المتجر الأساسي عند الإطلاق.</p>
         </div>
       </div>
@@ -1147,13 +1147,13 @@
 
   <script>
     const products = [
-      { name: "باقة خطى 3000", cash: 3000, total: 5000, image: "/package-1.png", alt: "مجوهرات فاخرة لباقة خطى 3000" },
-      { name: "باقة خطى 5000", cash: 5000, total: 7600, image: "/package-2.png", alt: "مجوهرات فاخرة لباقة خطى 5000" },
-      { name: "باقة خطى 7000", cash: 7000, total: 10400, image: "/package-3.png", alt: "مجوهرات فاخرة لباقة خطى 7000" },
-      { name: "باقة خطى 10000", cash: 10000, total: 15000, image: "/package-1.png", alt: "مجوهرات فاخرة لباقة خطى 10000" },
-      { name: "باقة خطى 15000", cash: 15000, total: 21800, image: "/package-2.png", alt: "مجوهرات فاخرة لباقة خطى 15000" },
-      { name: "باقة خطى 20000", cash: 20000, total: 29000, image: "/package-3.png", alt: "مجوهرات فاخرة لباقة خطى 20000" },
-      { name: "باقة خطى 30000", cash: 30000, total: 43000, image: "/package-1.png", alt: "مجوهرات فاخرة لباقة خطى 30000" }
+      { name: "باقة خطى 3000", cash: 3000, total: 5000, image: "/package-1.png", alt: "مجوهرات فاخرة لباقة خطى 3000", storeUrl: "#" },
+      { name: "باقة خطى 5000", cash: 5000, total: 7600, image: "/package-2.png", alt: "مجوهرات فاخرة لباقة خطى 5000", storeUrl: "#" },
+      { name: "باقة خطى 7000", cash: 7000, total: 10400, image: "/package-3.png", alt: "مجوهرات فاخرة لباقة خطى 7000", storeUrl: "#" },
+      { name: "باقة خطى 10000", cash: 10000, total: 15000, image: "/package-1.png", alt: "مجوهرات فاخرة لباقة خطى 10000", storeUrl: "#" },
+      { name: "باقة خطى 15000", cash: 15000, total: 21800, image: "/package-2.png", alt: "مجوهرات فاخرة لباقة خطى 15000", storeUrl: "#" },
+      { name: "باقة خطى 20000", cash: 20000, total: 29000, image: "/package-3.png", alt: "مجوهرات فاخرة لباقة خطى 20000", storeUrl: "#" },
+      { name: "باقة خطى 30000", cash: 30000, total: 43000, image: "/package-1.png", alt: "مجوهرات فاخرة لباقة خطى 30000", storeUrl: "#" }
     ];
 
     const productsGrid = document.getElementById("productsGrid");
@@ -1165,6 +1165,7 @@
     const modalTotal = document.getElementById("modalTotal");
     const modalDescription = document.getElementById("modalDescription");
     const installmentsTable = document.getElementById("installmentsTable");
+    const modalBuy = document.getElementById("modalBuy");
     const menuToggle = document.getElementById("menuToggle");
     const mobileMenu = document.getElementById("mobileMenu");
 
@@ -1198,7 +1199,8 @@
       modalTitle.textContent = product.name;
       modalCash.textContent = formatCurrency(product.cash);
       modalTotal.textContent = formatCurrency(product.total);
-      modalDescription.textContent = "بعد اختيار الباقة، يتم شراء المجوهرات بالتقسيط ثم إعادة بيعها لنا وفق الآلية الموضحة، ليحصل العميل على مبلغ السيولة كاش مع تقسيط إجمالي مبلغ الباقة على 4 دفعات شهرية مريحة.";
+      modalDescription.textContent = "هذا الموقع يعرض باقات السيولة ويوضح تفاصيلها فقط. عند الضغط على شراء الباقة الآن سيتم تحويلك إلى صفحة المنتج في متجر المجوهرات الخارجي لإتمام الطلب، وبعد وصول الطلب يتواصل فريق خطى معك لاستكمال إجراءات السلفة وتحويل مبلغ السيولة حسب الباقة المختارة.";
+      modalBuy.href = product.storeUrl;
       installmentsTable.innerHTML = "";
 
       for (let i = 1; i <= 4; i++) {
