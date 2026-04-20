@@ -39,10 +39,7 @@
       min-height: 100vh;
       font-family: "Tajawal", Arial, sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(circle at 18% 0%, rgba(214, 180, 95, 0.13), transparent 34%),
-        radial-gradient(circle at 88% 16%, rgba(55, 85, 138, 0.18), transparent 30%),
-        linear-gradient(145deg, #02040a 0%, var(--navy) 48%, #030610 100%);
+      background: var(--navy);
       overflow-x: hidden;
       text-align: center;
     }
@@ -76,7 +73,7 @@
       top: 0;
       z-index: 30;
       border-bottom: 1px solid rgba(214, 180, 95, 0.12);
-      background: rgba(3, 6, 14, 0.82);
+      background: var(--navy);
       backdrop-filter: blur(18px);
     }
 
@@ -283,21 +280,12 @@
       z-index: -1;
       border: 1px solid rgba(214, 180, 95, 0.18);
       border-radius: 34px;
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.014)),
-        radial-gradient(circle at 62% 8%, rgba(244, 220, 145, 0.18), transparent 32%),
-        linear-gradient(160deg, rgba(10, 18, 36, 0.92), rgba(4, 8, 17, 0.96));
+      background: var(--navy);
       box-shadow: var(--shadow);
     }
 
     .hero::after {
-      content: "";
-      position: absolute;
-      inset: -20%;
-      z-index: -2;
-      opacity: 0.75;
-      background: conic-gradient(from 230deg, transparent, rgba(214, 180, 95, 0.12), transparent 25%);
-      animation: glow 10s linear infinite;
+      display: none;
     }
 
     .hero-content {
@@ -376,6 +364,7 @@
 
     section {
       padding: 78px 0;
+      background: var(--navy);
     }
 
     .section-title {
@@ -641,7 +630,7 @@
     .footer {
       padding: 44px 0;
       border-top: 1px solid rgba(214, 180, 95, 0.14);
-      background: rgba(2, 5, 11, 0.45);
+      background: var(--navy);
     }
 
     .footer-grid {
