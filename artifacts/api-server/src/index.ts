@@ -1,19 +1,13 @@
-import http from "http";
-import app from "./app.js";
-import { logger } from "./lib/logger.js";
+import app from "./app";
+import { logger } from "./lib/logger";
 
 const port = Number(process.env.PORT || 3000);
 
-// إنشاء خادم HTTP أساسي وتمرير تطبيق Express إليه
-const server = http.createServer(app);
+app.listen(port, (err) => {
+  if (err) {
+    logger.error({ err }, "Error listening on port");
+    process.exit(1);
+  }
 
-// اصطياد الأخطاء (مثل تعطل المنفذ) بالطريقة الصحيحة والآمنة
-server.on("error", (err: any) => {
-  logger.error({ err }, "Error listening on port");
-  process.exit(1);
-});
-
-// تشغيل الخادم
-server.listen(port, () => {
   logger.info({ port }, "Server listening");
 });
