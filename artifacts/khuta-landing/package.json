@@ -73,8 +73,5 @@
     "vite": "catalog:",
     "wouter": "^3.3.5",
     "zod": "catalog:"
-  },
-  "dependencies": {
-    "@tailwindcss/oxide-darwin-arm64": "^4.2.2"
   }
 }
