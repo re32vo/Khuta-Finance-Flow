@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لمعه  | للسيولة المالية</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #050914;
+      --navy-soft: #0a1224;
+      --navy-card: #0d172b;
+      --gold: #d6b45f;
+      --gold-light: #f4dc91;
+      --gold-dark: #9e7622;
+      --text: #fbf5e8;
+      --muted: #aab4c5;
+      --line: rgba(214, 180, 95, 0.24);
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.5);
+      --radius: 22px;
+      --ease: 280ms ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Tajawal", Arial, sans-serif;
+      color: var(--text);
+      background: var(--navy);
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+      font-family: inherit;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid rgba(214, 180, 95, 0.12);
+      background: var(--navy);
+      backdrop-filter: blur(18px);
+    }
+
+    .site-header .container {
+      position: relative;
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .header-contact {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid rgba(244, 220, 145, 0.36);
+      border-radius: 14px;
+      background: rgba(214, 180, 95, 0.08);
+      color: var(--gold-light);
+      font-size: 14px;
+      font-weight: 900;
+      white-space: nowrap;
+      transition: transform var(--ease), background var(--ease), color var(--ease), border-color var(--ease);
+    }
+
+    .header-contact:hover {
+      transform: translateY(-2px);
+      border-color: rgba(244, 220, 145, 0.58);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #070a10;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      font-weight: 900;
+      color: var(--gold);
+      font-size: clamp(26px, 3.5vw, 42px);
+      letter-spacing: -0.8px;
+    }
+
+    .logo-img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      border: 1px solid rgba(214, 180, 95, 0.28);
+      border-radius: 16px;
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .logo-text {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .logo span {
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 2.1vw, 28px);
+      color: #d8deea;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      position: relative;
+      transition: color var(--ease);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -9px;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width var(--ease);
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      width: 48px;
+      height: 48px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: 1px solid rgba(214, 180, 95, 0.28);
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      transition: transform var(--ease), border-color var(--ease), background var(--ease);
+    }
+
+    .hamburger:hover {
+      transform: translateY(-2px);
+      border-color: rgba(214, 180, 95, 0.52);
+      background: rgba(214, 180, 95, 0.08);
+    }
+
+    .hamburger span {
+      width: 23px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--gold-light);
+      transition: transform var(--ease), opacity var(--ease);
+    }
+
+    .hamburger.is-open span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.is-open span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 0;
+      width: min(320px, calc(100vw - 32px));
+      padding: 14px;
+      border: 1px solid rgba(214, 180, 95, 0.26);
+      border-radius: 20px;
+      background: rgba(5, 9, 20, 0.96);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.52);
+      backdrop-filter: blur(18px);
+      opacity: 0;
+      transform: translateY(-10px) scale(0.98);
+      pointer-events: none;
+      transition: opacity var(--ease), transform var(--ease);
+    }
+
+    .mobile-menu.is-open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 13px 14px;
+      border-radius: 14px;
+      color: var(--text);
+      font-weight: 800;
+      transition: background var(--ease), color var(--ease);
+    }
+
+    .mobile-menu a:hover {
+      background: rgba(214, 180, 95, 0.11);
+      color: var(--gold-light);
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      min-height: 680px;
+      display: grid;
+      align-items: center;
+      padding: 76px 0;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 34px max(16px, calc((100vw - 1180px) / 2)) 42px;
+      z-index: -1;
+      border: 1px solid rgba(214, 180, 95, 0.18);
+      border-radius: 34px;
+      background: var(--navy);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      display: none;
+    }
+
+    .hero-content {
+      max-width: 850px;
+      padding: 0 clamp(18px, 4vw, 72px);
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--gold-light);
+      background: rgba(255, 255, 255, 0.035);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .hero h1 {
+      max-width: 830px;
+      margin-inline: auto;
+      font-size: clamp(38px, 7vw, 86px);
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: -1.7px;
+      margin-bottom: 22px;
+      background: linear-gradient(120deg, #fff 0%, var(--gold-light) 54%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 735px;
+      margin-inline: auto;
+      color: var(--muted);
+      font-size: clamp(17px, 2.3vw, 24px);
+      line-height: 1.9;
+      margin-bottom: 30px;
+    }
+
+    .primary-link,
+    .details-btn,
+    .buy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      border: 1px solid rgba(244, 220, 145, 0.46);
+      border-radius: 15px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold) 48%, var(--gold-dark));
+      color: #070a10;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 16px 36px rgba(214, 180, 95, 0.2);
+      transition: transform var(--ease), filter var(--ease), box-shadow var(--ease);
+    }
+
+    .primary-link {
+      padding: 0 30px;
+      font-size: 18px;
+    }
+
+    .primary-link:hover,
+    .details-btn:hover,
+    .buy-btn:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.08);
+      box-shadow: 0 22px 48px rgba(214, 180, 95, 0.3);
+    }
+
+    section {
+      padding: 78px 0;
+      background: var(--navy);
+    }
+
+    .section-title {
+      max-width: 780px;
+      margin: 0 auto 30px;
+      text-align: center;
+    }
+
+    .section-title.center {
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .section-title span {
+      display: block;
+      color: var(--gold);
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(30px, 5vw, 56px);
+      line-height: 1.16;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 17px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card,
+    .step-card,
+    .faq-item {
+      border: 1px solid rgba(214, 180, 95, 0.17);
+      border-radius: var(--radius);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018));
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+      transition: transform var(--ease), border-color var(--ease), background var(--ease);
+    }
+
+    .feature-card:hover,
+    .step-card:hover,
+    .faq-item:hover {
+      transform: translateY(-6px);
+      border-color: rgba(214, 180, 95, 0.38);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025));
+    }
+
+    .feature-card {
+      padding: 28px;
+      text-align: center;
+    }
+
+    .icon-mark,
+    .step-num {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      color: #07101c;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      font-weight: 900;
+      margin: 0 auto 20px;
+      box-shadow: 0 16px 34px rgba(214, 180, 95, 0.2);
+    }
+
+    .feature-card h3,
+    .step-card h3 {
+      font-size: 23px;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .feature-card p,
+    .step-card p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      counter-reset: step;
+    }
+
+    .step-card {
+      position: relative;
+      padding: 25px;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .step-card::after {
+      content: "";
+      position: absolute;
+      inset-inline-start: -35px;
+      bottom: -35px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(214, 180, 95, 0.07);
+    }
+
+    .products-head {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .products-note {
+      max-width: 420px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-inline: auto;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(12px, 2.3vw, 30px);
+      justify-items: center;
+    }
+
+    .product-card {
+      width: 100%;
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid rgba(214, 180, 95, 0.16);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.027);
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.34);
+      transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
+    }
+
+    .product-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(214, 180, 95, 0.42);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.48);
+    }
+
+    .product-image-button {
+      display: block;
+      width: 100%;
+      border: 0;
+      overflow: hidden;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .product-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      transition: transform 540ms ease, filter 540ms ease;
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.065);
+      filter: saturate(1.07) contrast(1.05);
+    }
+
+    .product-body {
+      padding: clamp(10px, 2.4vw, 18px);
+      background: linear-gradient(180deg, rgba(10, 18, 36, 0.74), rgba(4, 8, 17, 0.96));
+    }
+
+    .product-name {
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      text-align: center;
+      color: var(--gold-light);
+      font-size: clamp(15px, 2.5vw, 22px);
+      font-weight: 900;
+    }
+
+    .product-price {
+      margin: -4px 0 14px;
+      color: var(--gold);
+      font-size: clamp(14px, 2.4vw, 19px);
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .details-btn,
+    .buy-btn {
+      width: 100%;
+      font-size: clamp(13px, 2.3vw, 17px);
+    }
+
+    .faq-list {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      border: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 20px 22px;
+      color: var(--text);
+      background: transparent;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .faq-question span:last-child {
+      color: var(--gold);
+      transition: transform var(--ease);
+    }
+
+    .faq-item.active .faq-question span:last-child {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      color: var(--muted);
+      line-height: 1.85;
+      padding: 0 22px;
+      transition: max-height var(--ease), padding var(--ease);
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 170px;
+      padding: 0 22px 22px;
+    }
+
+    .footer {
+      padding: 44px 0;
+      border-top: 1px solid rgba(214, 180, 95, 0.14);
+      background: var(--navy);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 28px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .footer h3,
+    .footer h4 {
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+
+    .footer p,
+    .footer a {
+      line-height: 1.9;
+      font-size: 15px;
+      transition: color var(--ease);
+    }
+
+    .footer a:hover {
+      color: var(--gold-light);
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 6px;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(1, 3, 8, 0.78);
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--ease);
+    }
+
+    .modal-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal {
+      position: relative;
+      width: min(980px, 100%);
+      max-height: min(90vh, 900px);
+      overflow: auto;
+      border: 1px solid rgba(214, 180, 95, 0.3);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 82% 0%, rgba(214, 180, 95, 0.14), transparent 34%),
+        linear-gradient(145deg, rgba(12, 22, 42, 0.98), rgba(4, 8, 17, 0.98));
+      box-shadow: 0 38px 120px rgba(0, 0, 0, 0.65);
+      transform: translateY(20px) scale(0.98);
+      transition: transform var(--ease);
+    }
+
+    .modal-overlay.is-open .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .close-btn {
+      position: sticky;
+      top: 14px;
+      margin: 14px 14px -58px auto;
+      z-index: 2;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(214, 180, 95, 0.34);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(3, 6, 14, 0.84);
+      color: var(--gold-light);
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform var(--ease), background var(--ease), color var(--ease);
+    }
+
+    .close-btn:hover {
+      transform: rotate(90deg);
+      background: var(--gold);
+      color: #080b12;
+    }
+
+    .modal-content {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: clamp(18px, 3vw, 38px);
+      padding: clamp(20px, 4vw, 46px);
+      padding-top: 74px;
+    }
+
+    .modal-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border: 1px solid rgba(214, 180, 95, 0.2);
+      border-radius: 22px;
+      box-shadow: 0 22px 62px rgba(0, 0, 0, 0.36);
+    }
+
+    .modal-info h3 {
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.1;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+      font-weight: 900;
+    }
+
+    .modal-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .stat-box {
+      padding: 16px;
+      border: 1px solid rgba(214, 180, 95, 0.24);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .stat-box span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .stat-box strong {
+      display: block;
+      color: var(--text);
+      font-size: clamp(22px, 3.6vw, 34px);
+      line-height: 1.12;
+      font-weight: 900;
+    }
+
+    .description {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 17px;
+      margin-bottom: 18px;
+    }
+
+    .installments-title {
+      color: var(--gold-light);
+      font-size: 18px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 16px;
+      margin-bottom: 20px;
+      background: rgba(2, 5, 11, 0.32);
+      border: 1px solid rgba(214, 180, 95, 0.18);
+    }
+
+    th,
+    td {
+      padding: 13px 12px;
+      text-align: center;
+      border-bottom: 1px solid rgba(214, 180, 95, 0.13);
+      font-size: clamp(12px, 2.3vw, 15px);
+    }
+
+    th {
+      color: var(--gold-light);
+      font-weight: 900;
+      background: rgba(214, 180, 95, 0.07);
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .hint {
+      color: var(--muted);
+      margin-top: 10px;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @keyframes glow {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        align-items: center;
+        min-height: auto;
+        padding: 18px 0;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .header-contact {
+        display: none;
+      }
+
+      .hero {
+        min-height: 590px;
+        padding: 44px 0;
+      }
+
+      .features-grid,
+      .steps-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .products-head {
+        display: block;
+      }
+
+      .products-note {
+        margin-top: 8px;
+      }
+
+      .modal-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 20px, 1180px);
+      }
+
+      section {
+        padding: 52px 0;
+      }
+
+      .hero::before {
+        inset: 12px 10px 18px;
+        border-radius: 24px;
+      }
+
+      .hero-content {
+        padding: 0 16px;
+      }
+
+      .logo-img {
+        width: 42px;
+        height: 42px;
+        border-radius: 13px;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .logo span {
+        font-size: 12px;
+      }
+
+      .nav-actions {
+        gap: 8px;
+      }
+
+      .hamburger {
+        width: 43px;
+        height: 43px;
+        border-radius: 13px;
+      }
+
+      .mobile-menu {
+        width: min(300px, calc(100vw - 20px));
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .product-card {
+        border-radius: 16px;
+      }
+
+      .product-body {
+        padding: 8px;
+      }
+
+      .product-name {
+        min-height: 42px;
+        margin-bottom: 8px;
+      }
+
+      .details-btn {
+        min-height: 42px;
+        border-radius: 11px;
+      }
+
+      .modal {
+        border-radius: 22px;
+      }
+
+      .modal-content {
+        padding: 18px;
+        padding-top: 68px;
+      }
+
+      .modal-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#home" class="logo" aria-label="لمعه | Lamaa للسيولة المالية">
+        <img class="logo-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='28' fill='%23050914'/%3E%3Cpath d='M31 77c18-4 31-16 39-40 4 18 10 32 21 40' fill='none' stroke='%23d6b45f' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='72' cy='36' r='8' fill='%23f4dc91'/%3E%3C/svg%3E" alt="شعار لمعه | Lamaa">
+        <span class="logo-text">لمعه | Lamaa <span>| للسيولة المالية</span></span>
+      </a>
+      <div class="nav-actions">
+        <nav class="nav-links" aria-label="روابط الموقع">
+          <a href="#home">الرئيسية</a>
+          <a href="#features">مميزاتنا</a>
+          <a href="#how">كيف نعمل</a>
+          <a href="#packages">باقات السيولة</a>
+          <a href="#faq">الأسئلة الشائعة</a>
+        </nav>
+        <a href="#contact" class="header-contact">تواصل معنا</a>
+        <button class="hamburger" id="menuToggle" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <nav class="mobile-menu" id="mobileMenu" aria-label="القائمة المنبثقة">
+        <a href="#home">الرئيسية</a>
+        <a href="#features">مميزاتنا</a>
+        <a href="#how">كيف نعمل</a>
+        <a href="#packages">المنتجات</a>
+        <a href="#faq">الأسئلة الشائعة</a>
+        <a href="#contact">تواصل معنا</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-content">
+        <div class="eyebrow">حل سيولة عبر المجوهرات بالتقسيط</div>
+        <h1>سيولتك المالية صارت أسرع، بخطوات بسيطة ومريحة</h1>
+        <p>اطلب باقتك من المجوهرات، نحول لك قيمتها كاش فوراً، وقسط براحتك على 4 دفعات ميسرة.</p>
+        <a href="#packages" class="primary-link">تصفح باقات لمعه | Lamaa</a>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-title center">
+          <span>مميزاتنا</span>
+          <h2>لماذا تختار لمعه | Lamaa؟</h2>
+          <p>تجربة واضحة ومريحة تمنح العميل سيولة نقدية بطريقة منظمة، مع واجهة شفافة من اختيار الباقة حتى التحويل.</p>
+        </div>
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="icon-mark">24h</div>
+            <h3>سرعة التنفيذ</h3>
+            <p>نحول لك الكاش بمجرد إتمام طلبك وفق آلية واضحة ومباشرة.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-mark">4x</div>
+            <h3>تقسيط مريح</h3>
+            <p>سدد قيمة الباقة على 4 دفعات شهرية بدون ضغط مالي.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-mark">✓</div>
+            <h3>أمان وموثوقية</h3>
+            <p>كل التفاصيل ظاهرة قبل الطلب، من مبلغ السيولة حتى إجمالي التقسيط.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="container">
+        <div class="section-title center">
+          <span>كيف تعمل الخدمة</span>
+          <h2>أربع خطوات بسيطة للحصول على السيولة</h2>
+          <p>هذا الموقع مخصص لعرض باقات السيولة وشرح آلية الخدمة فقط، أما إتمام الطلب فيكون عبر متجرنا الآخر المخصص للمجوهرات.</p>
+        </div>
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-num">1</div>
+            <h3>اختر الباقة المناسبة</h3>
+            <p>تصفح باقات السيولة في هذا الموقع واختر المبلغ المناسب لاحتياجك من بين الباقات المعروضة.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-num">2</div>
+            <h3>انتقل لمتجر المجوهرات</h3>
+            <p>عند الضغط على زر شراء الباقة الآن، يتم نقلك إلى صفحة المنتج في متجرنا الآخر الخاص بالمجوهرات فقط.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-num">3</div>
+            <h3>أكمل طلب المجوهرات</h3>
+            <p>أتمم طلب المجوهرات من المتجر الخارجي بشكل طبيعي، علماً أن المتجر لا يعرض أي تفاصيل تخص السيولة أو السلفة.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-num">4</div>
+            <h3>نتواصل معك بخصوص السلفة</h3>
+            <p>بعد وصول طلبك، يتواصل فريق لمعه | Lamaa معك لاستكمال تفاصيل السلفة وتحويل مبلغ السيولة حسب الباقة المختارة.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="packages">
+      <div class="container">
+        <div class="products-head">
+          <div class="section-title">
+            <span>باقات السيولة</span>
+            <h2>اختر الباقة المناسبة</h2>
+          </div>
+          <p class="products-note">الشبكة تعرض منتجين فقط في كل سطر على الكمبيوتر والجوال، وكل بطاقة تظهر الصورة واسم الباقة ومبلغ السيولة وزر التفاصيل.</p>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-title center">
+          <span>الأسئلة الشائعة</span>
+          <h2>إجابات سريعة قبل الطلب</h2>
+        </div>
+        <div class="faq-list">
+          <article class="faq-item active">
+            <button class="faq-question" type="button"><span>متى يوصلني المبلغ؟</span><span>+</span></button>
+            <div class="faq-answer">يتم تحويل مبلغ السيولة فور الانتهاء من عملية شراء الباقة واكتمال بيانات الطلب.</div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button"><span>كيف يتم التقسيط؟</span><span>+</span></button>
+            <div class="faq-answer">يتم تقسيم إجمالي مبلغ الباقة على 4 دفعات شهرية واضحة كما يظهر داخل نافذة تفاصيل كل باقة.</div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button"><span>ماذا لو ما عندي الدفعة الأولى؟</span><span>+</span></button>
+            <div class="faq-answer">إذا لم تتوفر لديك الدفعة الأولى، يمكن لفريق لمعه | Lamaa دفعها عنك، ثم يتم خصم قيمتها من مبلغ السلفة قبل التحويل بشكل واضح ومتفق عليه.</div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button"><span>هل توجد بوابة دفع داخل هذه الصفحة؟</span><span>+</span></button>
+            <div class="faq-answer">لا، هذه واجهة تعريفية فقط. أزرار الشراء تنقل العميل إلى متجر المجوهرات الخارجي عند إضافة روابط المنتجات النهائية.</div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button"><span>هل الخدمة تتطلب كفيل؟</span><span>+</span></button>
+            <div class="faq-answer">لا، الخدمة مصممة كتقسيط ميسر ومباشر عبر باقات المجوهرات.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container footer-grid">
+      <div>
+        <h3>لمعه | Lamaa</h3>
+        <p>واجهة متجر فاخرة لخدمة السيولة المالية عبر باقات المجوهرات بالتقسيط.</p>
+      </div>
+      <div>
+        <h4>روابط سريعة</h4>
+        <div class="footer-links">
+          <a href="#home">الرئيسية</a>
+          <a href="#features">مميزاتنا</a>
+          <a href="#how">كيف نعمل</a>
+          <a href="#packages">باقات السيولة</a>
+        </div>
+      </div>
+      <div>
+        <h4>تواصل معنا</h4>
+        <div class="footer-links">
+          <a href="mailto:support@lamea.com">support@lamea.com</a>
+          <a href="tel:+966500000000">+966 50 000 0000</a>
+          <a href="#">الرياض، المملكة العربية السعودية</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="productModal" aria-hidden="true">
+    <article class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="close-btn" id="closeModal" type="button" aria-label="إغلاق النافذة">×</button>
+      <div class="modal-content">
+        <img class="modal-image" id="modalImage" src="" alt="">
+        <div class="modal-info">
+          <h3 id="modalTitle"></h3>
+          <div class="modal-stats">
+            <div class="stat-box">
+              <span>مبلغ السيولة</span>
+              <strong id="modalCash"></strong>
+            </div>
+            <div class="stat-box">
+              <span>إجمالي مبلغ الباقة</span>
+              <strong id="modalTotal"></strong>
+            </div>
+          </div>
+          <p class="description" id="modalDescription"></p>
+          <div class="installments-title">جدول التقسيط على 4 دفعات شهرية</div>
+          <table aria-label="جدول تقسيط الباقة">
+            <thead>
+              <tr>
+                <th>الدفعة</th>
+                <th>المبلغ</th>
+                <th>موعد السداد</th>
+              </tr>
+            </thead>
+            <tbody id="installmentsTable"></tbody>
+          </table>
+          <a href="https://www.facebook.com" class="buy-btn" id="modalBuy" target="_blank" rel="noopener noreferrer">شراء الباقة الآن</a>
+          <p class="hint">https://www.facebook.com</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <script>
+    const products = [
+      { name: "باقة    3000", cash: 3000, total: 5000, image: "/package-1.png", alt: "مجوهرات فاخرة لباقة لمعة 3000", storeUrl: "https://www.facebook.com" },
+      { name: "باقة    5000", cash: 5000, total: 7600, image: "/package-2.png", alt: "مجوهرات فاخرة لباقة لمعة 5000", storeUrl: "https://www.facebook.com" },
+      { name: "باقة    7000", cash: 7000, total: 10400, image: "/package-3.png", alt: "مجوهرات فاخرة لباقة لمعة 7000", storeUrl: "https://www.facebook.com" },
+      { name: "باقة   10000", cash: 10000, total: 15000, image: "/package-1.png", alt: "مجوهرات فاخرة لباقة لمعة 10000", storeUrl: "https://www.facebook.com" },
+      { name: "باقة   15000", cash: 15000, total: 21800, image: "/package-2.png", alt: "مجوهرات فاخرة لباقة لمعة 15000", storeUrl: "https://www.facebook.com" },
+      { name: "باقة   20000", cash: 20000, total: 29000, image: "/package-3.png", alt: "مجوهرات فاخرة لباقة لمعة 20000", storeUrl: "https://www.facebook.com" },
+      { name: "باقة   30000", cash: 30000, total: 43000, image: "/package-1.png", alt: "مجوهرات فاخرة لباقة لمعة 30000", storeUrl: "https://www.facebook.com" }
+    ];
+
+    const productsGrid = document.getElementById("productsGrid");
+    const modal = document.getElementById("productModal");
+    const closeModal = document.getElementById("closeModal");
+    const modalImage = document.getElementById("modalImage");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalCash = document.getElementById("modalCash");
+    const modalTotal = document.getElementById("modalTotal");
+    const modalDescription = document.getElementById("modalDescription");
+    const installmentsTable = document.getElementById("installmentsTable");
+    const modalBuy = document.getElementById("modalBuy");
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat("ar-SA").format(value) + " ريال";
+    }
+
+    function createCard(product, index) {
+      const card = document.createElement("article");
+      card.className = "product-card";
+      card.innerHTML = `
+        <button class="product-image-button" type="button" aria-label="عرض تفاصيل ${product.name}">
+          <img class="product-image" src="${product.image}" alt="${product.alt}">
+        </button>
+        <div class="product-body">
+          <h3 class="product-name">${product.name}</h3>
+          <div class="product-price">${formatCurrency(product.cash)}</div>
+          <button class="details-btn" type="button">عرض التفاصيل</button>
+        </div>
+      `;
+      card.querySelector(".product-image-button").addEventListener("click", () => openProduct(index));
+      card.querySelector(".details-btn").addEventListener("click", () => openProduct(index));
+      return card;
+    }
+
+    function openProduct(index) {
+      const product = products[index];
+      const installment = product.total / 4;
+      modalImage.src = product.image;
+      modalImage.alt = product.alt;
+      modalTitle.textContent = product.name;
+      modalCash.textContent = formatCurrency(product.cash);
+      modalTotal.textContent = formatCurrency(product.total);
+      modalDescription.textContent = "هذا الموقع يعرض باقات السيولة ويوضح تفاصيلها فقط. عند الضغط على شراء الباقة الآن سيتم تحويلك إلى صفحة المنتج في متجر المجوهرات الخارجي لإتمام الطلب، وبعد وصول الطلب يتواصل فريق لمعة معك لاستكمال إجراءات السلفة وتحويل مبلغ السيولة حسب الباقة المختارة. وإذا لم تتوفر لديك الدفعة الأولى، يمكن دفعها عنك وخصم قيمتها من مبلغ السلفة قبل التحويل.";
+      modalBuy.href = product.storeUrl;
+      installmentsTable.innerHTML = "";
+
+      for (let i = 1; i <= 4; i++) {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>الدفعة ${i}</td>
+          <td>${formatCurrency(installment)}</td>
+          <td>${i === 1 ? "عند الشراء" : "بعد " + (i - 1) + " شهر"}</td>
+        `;
+        installmentsTable.appendChild(row);
+      }
+
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+    }
+
+    function closeProductModal() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+    }
+
+    products.forEach((product, index) => {
+      productsGrid.appendChild(createCard(product, index));
+    });
+
+    document.querySelectorAll(".faq-question").forEach(button => {
+      button.addEventListener("click", () => {
+        const currentItem = button.closest(".faq-item");
+        const wasActive = currentItem.classList.contains("active");
+        document.querySelectorAll(".faq-item").forEach(item => item.classList.remove("active"));
+        if (!wasActive) currentItem.classList.add("active");
+      });
+    });
+
+    function closeMenu() {
+      mobileMenu.classList.remove("is-open");
+      menuToggle.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    }
+
+    menuToggle.addEventListener("click", event => {
+      event.stopPropagation();
+      const isOpen = mobileMenu.classList.toggle("is-open");
+      menuToggle.classList.toggle("is-open", isOpen);
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    mobileMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("click", event => {
+      if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) closeMenu();
+    });
+
+    closeModal.addEventListener("click", closeProductModal);
+    modal.addEventListener("click", event => {
+      if (event.target === modal) closeProductModal();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && modal.classList.contains("is-open")) closeProductModal();
+      if (event.key === "Escape" && mobileMenu.classList.contains("is-open")) closeMenu();
+    });
+  </script>
+</body>
+</html>
