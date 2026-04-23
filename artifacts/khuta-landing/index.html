@@ -334,7 +334,8 @@
 
     .primary-link,
     .details-btn,
-    .buy-btn {
+    .buy-btn,
+    .whatsapp-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -356,7 +357,8 @@
 
     .primary-link:hover,
     .details-btn:hover,
-    .buy-btn:hover {
+    .buy-btn:hover,
+    .whatsapp-btn:hover {
       transform: translateY(-3px);
       filter: brightness(1.08);
       box-shadow: 0 22px 48px rgba(214, 180, 95, 0.3);
@@ -406,9 +408,23 @@
       gap: 20px;
     }
 
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .policy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
     .feature-card,
     .step-card,
-    .faq-item {
+    .faq-item,
+    .trust-card,
+    .policy-card {
       border: 1px solid rgba(214, 180, 95, 0.17);
       border-radius: var(--radius);
       background: linear-gradient(160deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018));
@@ -418,13 +434,17 @@
 
     .feature-card:hover,
     .step-card:hover,
-    .faq-item:hover {
+    .faq-item:hover,
+    .trust-card:hover,
+    .policy-card:hover {
       transform: translateY(-6px);
       border-color: rgba(214, 180, 95, 0.38);
       background: linear-gradient(160deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025));
     }
 
-    .feature-card {
+    .feature-card,
+    .trust-card,
+    .policy-card {
       padding: 28px;
       text-align: center;
     }
@@ -444,14 +464,18 @@
     }
 
     .feature-card h3,
-    .step-card h3 {
+    .step-card h3,
+    .trust-card h3,
+    .policy-card h3 {
       font-size: 23px;
       margin-bottom: 10px;
       color: var(--text);
     }
 
     .feature-card p,
-    .step-card p {
+    .step-card p,
+    .trust-card p,
+    .policy-card p {
       color: var(--muted);
       line-height: 1.8;
       font-size: 16px;
@@ -572,9 +596,35 @@
     }
 
     .details-btn,
-    .buy-btn {
+    .buy-btn,
+    .whatsapp-btn {
       width: 100%;
       font-size: clamp(13px, 2.3vw, 17px);
+    }
+
+    .whatsapp-btn {
+      border-color: rgba(88, 214, 141, 0.5);
+      background: linear-gradient(135deg, #dffbe9, #30c768 48%, #168a42);
+      color: #031107;
+      box-shadow: 0 16px 36px rgba(48, 199, 104, 0.18);
+    }
+
+    .purchase-note {
+      margin-bottom: 14px;
+      padding: 14px 16px;
+      border: 1px solid rgba(214, 180, 95, 0.18);
+      border-radius: 16px;
+      background: rgba(214, 180, 95, 0.08);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .modal-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
     }
 
     .faq-list {
@@ -881,6 +931,30 @@
       line-height: 1.7;
     }
 
+    .floating-whatsapp {
+      position: fixed;
+      left: 22px;
+      bottom: 22px;
+      z-index: 60;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(88, 214, 141, 0.58);
+      border-radius: 50%;
+      background: linear-gradient(135deg, #dffbe9, #30c768 48%, #168a42);
+      color: #031107;
+      font-size: 26px;
+      font-weight: 900;
+      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.36);
+      transition: transform var(--ease), filter var(--ease);
+    }
+
+    .floating-whatsapp:hover {
+      transform: translateY(-4px);
+      filter: brightness(1.06);
+    }
+
     @keyframes glow {
       to {
         transform: rotate(360deg);
@@ -909,6 +983,8 @@
 
       .features-grid,
       .steps-grid,
+      .trust-grid,
+      .policy-grid,
       .footer-grid {
         grid-template-columns: 1fr;
       }
@@ -1007,6 +1083,18 @@
       .modal-stats {
         grid-template-columns: 1fr;
       }
+
+      .modal-buttons {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-whatsapp {
+        left: 14px;
+        bottom: 14px;
+        width: 52px;
+        height: 52px;
+        font-size: 23px;
+      }
     }
   </style>
 </head>
@@ -1075,6 +1163,38 @@
             <div class="icon-mark">✓</div>
             <h3>أمان وموثوقية</h3>
             <p>كل التفاصيل ظاهرة قبل الطلب، من مبلغ السيولة حتى إجمالي التقسيط.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="trust">
+      <div class="container">
+        <div class="section-title center">
+          <span>ثقة ووضوح</span>
+          <h2>تفاصيل تساعدك تقرر بثقة</h2>
+          <p>الخدمة مبنية على عرض واضح للباقة والتقسيط قبل الانتقال لإتمام الطلب.</p>
+        </div>
+        <div class="trust-grid">
+          <article class="trust-card">
+            <div class="icon-mark">✓</div>
+            <h3>بدون كفيل</h3>
+            <p>الإجراءات مباشرة عبر باقات المجوهرات المعروضة في الموقع.</p>
+          </article>
+          <article class="trust-card">
+            <div class="icon-mark">4x</div>
+            <h3>أقساط واضحة</h3>
+            <p>كل باقة تعرض الدفعة الأولى والقسط الشهري قبل المتابعة.</p>
+          </article>
+          <article class="trust-card">
+            <div class="icon-mark">24h</div>
+            <h3>متابعة سريعة</h3>
+            <p>بعد إتمام الطلب يتواصل معك الفريق لاستكمال إجراءات السيولة.</p>
+          </article>
+          <article class="trust-card">
+            <div class="icon-mark">WA</div>
+            <h3>دعم واتساب</h3>
+            <p>تقدر ترسل الباقة المطلوبة مباشرة برسالة جاهزة للفريق.</p>
           </article>
         </div>
       </div>
@@ -1151,6 +1271,38 @@
             <button class="faq-question" type="button"><span>هل الخدمة تتطلب كفيل؟</span><span>+</span></button>
             <div class="faq-answer">لا، الخدمة مصممة كتقسيط ميسر ومباشر عبر باقات المجوهرات.</div>
           </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button"><span>هل أقدر أستفسر قبل الشراء؟</span><span>+</span></button>
+            <div class="faq-answer">نعم، يمكنك الضغط على زر واتساب في أي باقة لإرسال رسالة جاهزة باسم الباقة ومراجعة التفاصيل قبل المتابعة.</div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button"><span>هل أقدر أختار باقة أقل؟</span><span>+</span></button>
+            <div class="faq-answer">نعم، يمكنك اختيار أي باقة من الباقات المتاحة حسب المبلغ المناسب لك قبل إتمام الطلب.</div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button"><span>متى يتواصل معي الفريق؟</span><span>+</span></button>
+            <div class="faq-answer">يتواصل الفريق بعد وصول الطلب واكتمال البيانات المطلوبة لمراجعة تفاصيل السلفة وتحويل مبلغ السيولة.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="policy">
+      <div class="container">
+        <div class="section-title center">
+          <span>الشروط والخصوصية</span>
+          <h2>نقاط مختصرة قبل الطلب</h2>
+          <p>هذه الصفحة تعرض الباقات وتفاصيلها، وإتمام الطلب يتم عبر متجر المجوهرات الخارجي.</p>
+        </div>
+        <div class="policy-grid">
+          <article class="policy-card">
+            <h3>الشروط الأساسية</h3>
+            <p>مبالغ الباقات والأقساط المعروضة توضيحية للعميل قبل الطلب، ويتم تأكيد التفاصيل النهائية عند التواصل مع الفريق.</p>
+          </article>
+          <article class="policy-card">
+            <h3>سياسة الخصوصية</h3>
+            <p>تستخدم بيانات التواصل فقط لمتابعة طلب الباقة وإجراءات السيولة، ولا يتم عرض بياناتك داخل الموقع.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -1216,14 +1368,34 @@
           </table>
         </div>
         <div class="modal-actions">
-          <a href="https://www.facebook.com" class="buy-btn" id="modalBuy" target="_blank" rel="noopener noreferrer">شراء الباقة الآن</a>
+          <p class="purchase-note">إتمام الطلب يكون عبر متجر المجوهرات الخارجي، وبعد الطلب يتواصل معك الفريق لإكمال إجراءات السيولة.</p>
+          <div class="modal-buttons">
+            <a href="https://www.facebook.com" class="buy-btn" id="modalBuy" target="_blank" rel="noopener noreferrer">شراء الباقة الآن</a>
+            <a href="#" class="whatsapp-btn" id="modalWhatsApp" target="_blank" rel="noopener noreferrer">تواصل واتساب</a>
+          </div>
           <p class="hint">https://www.facebook.com</p>
         </div>
       </div>
     </article>
   </div>
 
+  <a href="#" class="floating-whatsapp" id="floatingWhatsApp" target="_blank" rel="noopener noreferrer" aria-label="تواصل واتساب">WA</a>
+
   <script>
+    const whatsappPhone = "966500000000";
+    window.dataLayer = window.dataLayer || [];
+
+    function trackEvent(name, details = {}) {
+      window.dataLayer.push({ event: name, ...details });
+      if (typeof window.gtag === "function") {
+        window.gtag("event", name, details);
+      }
+    }
+
+    function makeWhatsAppUrl(message) {
+      return `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(message)}`;
+    }
+
     const products = [
       { name: "باقة    2200", cash: 1350, total: 2200, image: "/package-1.png", alt: "مجوهرات فاخرة لباقة لمعة 2200", storeUrl: "https://www.facebook.com" },
       { name: "باقة    1500", cash: 870, total: 1500, image: "/package-2.png", alt: "مجوهرات فاخرة لباقة لمعة 1500", storeUrl: "https://www.facebook.com" },
@@ -1242,8 +1414,14 @@
     const modalDescription = document.getElementById("modalDescription");
     const installmentsTable = document.getElementById("installmentsTable");
     const modalBuy = document.getElementById("modalBuy");
+    const modalWhatsApp = document.getElementById("modalWhatsApp");
+    const floatingWhatsApp = document.getElementById("floatingWhatsApp");
     const menuToggle = document.getElementById("menuToggle");
     const mobileMenu = document.getElementById("mobileMenu");
+    const defaultWhatsAppMessage = "السلام عليكم، أرغب بالاستفسار عن باقات لمعه للسيولة.";
+
+    floatingWhatsApp.href = makeWhatsAppUrl(defaultWhatsAppMessage);
+    trackEvent("page_view", { page: "home" });
 
     function formatCurrency(value) {
       return new Intl.NumberFormat("ar-SA").format(value) + " ريال";
@@ -1269,6 +1447,7 @@
 
     function openProduct(index) {
       const product = products[index];
+      const whatsappMessage = `السلام عليكم، أرغب بالاستفسار عن ${product.name.trim()} بمبلغ سيولة ${formatCurrency(product.cash)}.`;
       const packageTableData = [
         { total: 2200, installment: 550, netAmount: 1350, receivedAmount: 800 },
         { total: 1500, installment: 375, netAmount: 870, receivedAmount: 500 },
@@ -1282,6 +1461,7 @@
       modalTotal.textContent = formatCurrency(product.total);
       modalDescription.textContent = "هذا الموقع يعرض باقات السيولة ويوضح تفاصيلها فقط. عند الضغط على شراء الباقة الآن سيتم تحويلك إلى صفحة المنتج في متجر المجوهرات الخارجي لإتمام الطلب، وبعد وصول الطلب يتواصل فريق لمعة معك لاستكمال إجراءات السلفة وتحويل مبلغ السيولة حسب الباقة المختارة. وإذا لم تتوفر لديك الدفعة الأولى، يمكن دفعها عنك وخصم قيمتها من مبلغ السلفة قبل التحويل.";
       modalBuy.href = product.storeUrl;
+      modalWhatsApp.href = makeWhatsAppUrl(whatsappMessage);
       installmentsTable.innerHTML = "";
 
       for (const rowData of packageTableData) {
@@ -1298,6 +1478,7 @@
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
       document.body.classList.add("modal-open");
+      trackEvent("package_details_open", { package: product.name.trim(), total: product.total, cash: product.cash });
     }
 
     function closeProductModal() {
@@ -1308,6 +1489,18 @@
 
     products.forEach((product, index) => {
       productsGrid.appendChild(createCard(product, index));
+    });
+
+    modalBuy.addEventListener("click", () => {
+      trackEvent("package_buy_click", { package: modalTitle.textContent });
+    });
+
+    modalWhatsApp.addEventListener("click", () => {
+      trackEvent("package_whatsapp_click", { package: modalTitle.textContent });
+    });
+
+    floatingWhatsApp.addEventListener("click", () => {
+      trackEvent("floating_whatsapp_click");
     });
 
     document.querySelectorAll(".faq-question").forEach(button => {
