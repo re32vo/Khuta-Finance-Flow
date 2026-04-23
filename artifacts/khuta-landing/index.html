@@ -996,7 +996,7 @@
       <div class="container hero-content">
         <div class="eyebrow">حل سيولة عبر المجوهرات بالتقسيط</div>
         <h1>سيولتك المالية صارت أسرع، بخطوات بسيطة ومريحة</h1>
-        <p>اطلب باقتك من المجوهرات، نحول لك قيمتها كاش فوراً، وقسط براحتك على 5 دفعات ميسرة.</p>
+        <p>اطلب باقتك من المجوهرات، نحول لك قيمتها كاش فوراً، وقسط براحتك على 4 دفعات ميسرة.</p>
         <a href="#packages" class="primary-link">تصفح باقات لمعه | Lamaa</a>
       </div>
     </section>
@@ -1015,9 +1015,9 @@
             <p>نحول لك الكاش بمجرد إتمام طلبك وفق آلية واضحة ومباشرة.</p>
           </article>
           <article class="feature-card">
-            <div class="icon-mark">5x</div>
+            <div class="icon-mark">4x</div>
             <h3>تقسيط مريح</h3>
-            <p>سدد قيمة الباقة على 5 دفعات شهرية بدون ضغط مالي.</p>
+            <p>سدد قيمة الباقة على 4 دفعات شهرية بدون ضغط مالي.</p>
           </article>
           <article class="feature-card">
             <div class="icon-mark">✓</div>
@@ -1086,7 +1086,7 @@
           </article>
           <article class="faq-item">
             <button class="faq-question" type="button"><span>كيف يتم التقسيط؟</span><span>+</span></button>
-            <div class="faq-answer">يتم تقسيم إجمالي مبلغ الباقة على 5 دفعات شهرية واضحة كما يظهر داخل نافذة تفاصيل كل باقة.</div>
+            <div class="faq-answer">يتم تقسيم إجمالي مبلغ الباقة على 4 دفعات شهرية واضحة كما يظهر داخل نافذة تفاصيل كل باقة.</div>
           </article>
           <article class="faq-item">
             <button class="faq-question" type="button"><span>ماذا لو ما عندي الدفعة الأولى؟</span><span>+</span></button>
@@ -1149,13 +1149,14 @@
             </div>
           </div>
           <p class="description" id="modalDescription"></p>
-          <div class="installments-title">جدول التقسيط على 5 دفعات شهرية</div>
+          <div class="installments-title">جدول التقسيط على 4 دفعات شهرية</div>
           <table aria-label="جدول تقسيط الباقة">
             <thead>
               <tr>
-                <th>الدفعة</th>
-                <th>المبلغ</th>
-                <th>موعد السداد</th>
+                <th>البكجات المتوفرة</th>
+                <th>الدفعة الأولى والقسط الشهري</th>
+                <th>المبلغ الصافي لك بعد خصم الرسوم وإعادة البيع والأتعاب</th>
+                <th>المبلغ النازل في حساب العميل في حال دفعه قيمة الدفعة الأولى</th>
               </tr>
             </thead>
             <tbody id="installmentsTable"></tbody>
@@ -1213,7 +1214,12 @@
 
     function openProduct(index) {
       const product = products[index];
-      const installment = product.total / 5;
+      const packageTableData = [
+        { total: 2200, installment: 550, netAmount: 1350, receivedAmount: 800 },
+        { total: 1500, installment: 375, netAmount: 870, receivedAmount: 500 },
+        { total: 1050, installment: 262, netAmount: 600, receivedAmount: 350 },
+        { total: 750, installment: 187, netAmount: 420, receivedAmount: 250 }
+      ];
       modalImage.src = product.image;
       modalImage.alt = product.alt;
       modalTitle.textContent = product.name;
@@ -1223,12 +1229,13 @@
       modalBuy.href = product.storeUrl;
       installmentsTable.innerHTML = "";
 
-      for (let i = 1; i <= 5; i++) {
+      for (const rowData of packageTableData) {
         const row = document.createElement("tr");
         row.innerHTML = `
-          <td>الدفعة ${i}</td>
-          <td>${formatCurrency(installment)}</td>
-          <td>${i === 1 ? "عند الشراء" : "بعد " + (i - 1) + " شهر"}</td>
+          <td>${rowData.total}</td>
+          <td>${rowData.installment}</td>
+          <td>${rowData.netAmount}</td>
+          <td>${rowData.receivedAmount}</td>
         `;
         installmentsTable.appendChild(row);
       }
