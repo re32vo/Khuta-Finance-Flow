@@ -996,7 +996,7 @@
       <div class="container hero-content">
         <div class="eyebrow">حل سيولة عبر المجوهرات بالتقسيط</div>
         <h1>سيولتك المالية صارت أسرع، بخطوات بسيطة ومريحة</h1>
-        <p>اطلب باقتك من المجوهرات، نحول لك قيمتها كاش فوراً، وقسط براحتك على 4 دفعات ميسرة.</p>
+        <p>اطلب باقتك من المجوهرات، نحول لك قيمتها كاش فوراً، وقسط براحتك على 5 دفعات ميسرة.</p>
         <a href="#packages" class="primary-link">تصفح باقات لمعه | Lamaa</a>
       </div>
     </section>
@@ -1015,9 +1015,9 @@
             <p>نحول لك الكاش بمجرد إتمام طلبك وفق آلية واضحة ومباشرة.</p>
           </article>
           <article class="feature-card">
-            <div class="icon-mark">4x</div>
+            <div class="icon-mark">5x</div>
             <h3>تقسيط مريح</h3>
-            <p>سدد قيمة الباقة على 4 دفعات شهرية بدون ضغط مالي.</p>
+            <p>سدد قيمة الباقة على 5 دفعات شهرية بدون ضغط مالي.</p>
           </article>
           <article class="feature-card">
             <div class="icon-mark">✓</div>
@@ -1086,7 +1086,7 @@
           </article>
           <article class="faq-item">
             <button class="faq-question" type="button"><span>كيف يتم التقسيط؟</span><span>+</span></button>
-            <div class="faq-answer">يتم تقسيم إجمالي مبلغ الباقة على 4 دفعات شهرية واضحة كما يظهر داخل نافذة تفاصيل كل باقة.</div>
+            <div class="faq-answer">يتم تقسيم إجمالي مبلغ الباقة على 5 دفعات شهرية واضحة كما يظهر داخل نافذة تفاصيل كل باقة.</div>
           </article>
           <article class="faq-item">
             <button class="faq-question" type="button"><span>ماذا لو ما عندي الدفعة الأولى؟</span><span>+</span></button>
@@ -1149,7 +1149,7 @@
             </div>
           </div>
           <p class="description" id="modalDescription"></p>
-          <div class="installments-title">جدول التقسيط على 4 دفعات شهرية</div>
+          <div class="installments-title">جدول التقسيط على 5 دفعات شهرية</div>
           <table aria-label="جدول تقسيط الباقة">
             <thead>
               <tr>
@@ -1213,7 +1213,7 @@
 
     function openProduct(index) {
       const product = products[index];
-      const installment = product.total / 4;
+      const installment = product.total / 5;
       modalImage.src = product.image;
       modalImage.alt = product.alt;
       modalTitle.textContent = product.name;
@@ -1223,7 +1223,7 @@
       modalBuy.href = product.storeUrl;
       installmentsTable.innerHTML = "";
 
-      for (let i = 1; i <= 4; i++) {
+      for (let i = 1; i <= 5; i++) {
         const row = document.createElement("tr");
         row.innerHTML = `
           <td>الدفعة ${i}</td>
