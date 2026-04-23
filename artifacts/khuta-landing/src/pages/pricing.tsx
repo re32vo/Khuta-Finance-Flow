@@ -13,8 +13,7 @@ function Pricing() {
       features: [
         "استشارة شهرية",
         "تحليل محفظة بسيط",
-        "تقارير أساسية",
-        "دعم عبر البريد الإلكتروني"
+        "تقارير أساسية"
       ],
       popular: false
     },
@@ -123,7 +122,7 @@ function Pricing() {
             </div>
             <div>
               <h3 className="font-semibold mb-2">كيف أحصل على الدعم؟</h3>
-              <p className="text-gray-600">متوفر لك الدعم عبر الهاتف والبريد الإلكتروني والدردشة المباشرة.</p>
+              <p className="text-gray-600">متوفر لك الدعم عبر الهاتف والدردشة المباشرة.</p>
             </div>
           </div>
         </div>

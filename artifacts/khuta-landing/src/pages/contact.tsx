@@ -9,7 +9,6 @@ import { toast } from "@/hooks/use-toast";
 function Contact() {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     phone: "",
     subject: "",
     message: ""
@@ -30,7 +29,6 @@ function Contact() {
 
     setFormData({
       name: "",
-      email: "",
       phone: "",
       subject: "",
       message: ""
@@ -102,21 +100,6 @@ function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    البريد الإلكتروني *
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="email@example.com"
-                  />
-                </div>
-
-                <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
                     موضوع الرسالة *
                   </label>
@@ -160,14 +143,6 @@ function Contact() {
                 <CardTitle>معلومات التواصل</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-center">
-                  <span className="text-2xl mr-3">📧</span>
-                  <div>
-                    <p className="font-medium">البريد الإلكتروني</p>
-                    <p className="text-gray-600">info@khutafinance.com</p>
-                  </div>
-                </div>
-
                 <div className="flex items-center">
                   <span className="text-2xl mr-3">📱</span>
                   <div>

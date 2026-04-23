@@ -29,7 +29,6 @@ function Footer() {
           <div>
             <h4 className="text-sm font-semibold mb-4">تواصل معنا</h4>
             <ul className="space-y-2 text-gray-400">
-              <li>📧 info@khutafinance.com</li>
               <li>📱 +966 50 123 4567</li>
               <li>📍 الرياض، المملكة العربية السعودية</li>
             </ul>
