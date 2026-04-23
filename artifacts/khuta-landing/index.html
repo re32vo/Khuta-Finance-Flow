@@ -408,23 +408,9 @@
       gap: 20px;
     }
 
-    .trust-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    .policy-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
     .feature-card,
     .step-card,
-    .faq-item,
-    .trust-card,
-    .policy-card {
+    .faq-item {
       border: 1px solid rgba(214, 180, 95, 0.17);
       border-radius: var(--radius);
       background: linear-gradient(160deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018));
@@ -434,17 +420,13 @@
 
     .feature-card:hover,
     .step-card:hover,
-    .faq-item:hover,
-    .trust-card:hover,
-    .policy-card:hover {
+    .faq-item:hover {
       transform: translateY(-6px);
       border-color: rgba(214, 180, 95, 0.38);
       background: linear-gradient(160deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025));
     }
 
-    .feature-card,
-    .trust-card,
-    .policy-card {
+    .feature-card {
       padding: 28px;
       text-align: center;
     }
@@ -464,18 +446,14 @@
     }
 
     .feature-card h3,
-    .step-card h3,
-    .trust-card h3,
-    .policy-card h3 {
+    .step-card h3 {
       font-size: 23px;
       margin-bottom: 10px;
       color: var(--text);
     }
 
     .feature-card p,
-    .step-card p,
-    .trust-card p,
-    .policy-card p {
+    .step-card p {
       color: var(--muted);
       line-height: 1.8;
       font-size: 16px;
@@ -983,8 +961,6 @@
 
       .features-grid,
       .steps-grid,
-      .trust-grid,
-      .policy-grid,
       .footer-grid {
         grid-template-columns: 1fr;
       }
@@ -1168,38 +1144,6 @@
       </div>
     </section>
 
-    <section id="trust">
-      <div class="container">
-        <div class="section-title center">
-          <span>ثقة ووضوح</span>
-          <h2>تفاصيل تساعدك تقرر بثقة</h2>
-          <p>الخدمة مبنية على عرض واضح للباقة والتقسيط قبل الانتقال لإتمام الطلب.</p>
-        </div>
-        <div class="trust-grid">
-          <article class="trust-card">
-            <div class="icon-mark">✓</div>
-            <h3>بدون كفيل</h3>
-            <p>الإجراءات مباشرة عبر باقات المجوهرات المعروضة في الموقع.</p>
-          </article>
-          <article class="trust-card">
-            <div class="icon-mark">4x</div>
-            <h3>أقساط واضحة</h3>
-            <p>كل باقة تعرض الدفعة الأولى والقسط الشهري قبل المتابعة.</p>
-          </article>
-          <article class="trust-card">
-            <div class="icon-mark">24h</div>
-            <h3>متابعة سريعة</h3>
-            <p>بعد إتمام الطلب يتواصل معك الفريق لاستكمال إجراءات السيولة.</p>
-          </article>
-          <article class="trust-card">
-            <div class="icon-mark">WA</div>
-            <h3>دعم واتساب</h3>
-            <p>تقدر ترسل الباقة المطلوبة مباشرة برسالة جاهزة للفريق.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <section id="how">
       <div class="container">
         <div class="section-title center">
@@ -1287,25 +1231,6 @@
       </div>
     </section>
 
-    <section id="policy">
-      <div class="container">
-        <div class="section-title center">
-          <span>الشروط والخصوصية</span>
-          <h2>نقاط مختصرة قبل الطلب</h2>
-          <p>هذه الصفحة تعرض الباقات وتفاصيلها، وإتمام الطلب يتم عبر متجر المجوهرات الخارجي.</p>
-        </div>
-        <div class="policy-grid">
-          <article class="policy-card">
-            <h3>الشروط الأساسية</h3>
-            <p>مبالغ الباقات والأقساط المعروضة توضيحية للعميل قبل الطلب، ويتم تأكيد التفاصيل النهائية عند التواصل مع الفريق.</p>
-          </article>
-          <article class="policy-card">
-            <h3>سياسة الخصوصية</h3>
-            <p>تستخدم بيانات التواصل فقط لمتابعة طلب الباقة وإجراءات السيولة، ولا يتم عرض بياناتك داخل الموقع.</p>
-          </article>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="footer" id="contact">
