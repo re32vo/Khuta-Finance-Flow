@@ -1,9 +1,14 @@
 import app from "./app.js";
 import { logger } from "./lib/logger.js";
+import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 
 const port = Number(process.env.PORT || 3000);
 
-const server = app.listen(port, () => {
+const server = createServer(
+  app as unknown as (req: IncomingMessage, res: ServerResponse) => void,
+);
+
+server.listen(port, () => {
   logger.info({ port }, "Server listening");
 });
 
