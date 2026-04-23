@@ -743,6 +743,10 @@
       box-shadow: 0 22px 62px rgba(0, 0, 0, 0.36);
     }
 
+    .modal-info {
+      min-width: 0;
+    }
+
     .modal-info h3 {
       font-size: clamp(28px, 4vw, 48px);
       line-height: 1.1;
@@ -794,6 +798,15 @@
       margin-bottom: 10px;
     }
 
+    .modal-table {
+      grid-column: 1 / -1;
+      min-width: 0;
+    }
+
+    .modal-actions {
+      min-width: 0;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -820,6 +833,42 @@
 
     tr:last-child td {
       border-bottom: 0;
+    }
+
+    @media (min-width: 901px) {
+      .modal {
+        width: min(1160px, 100%);
+      }
+
+      .modal-content {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        row-gap: 22px;
+      }
+
+      .modal-table .installments-title {
+        font-size: 20px;
+        margin-bottom: 12px;
+      }
+
+      .modal-actions {
+        grid-column: 2;
+      }
+
+      .modal-table table {
+        table-layout: fixed;
+      }
+
+      .modal-table th:nth-child(1) { width: 13%; }
+      .modal-table th:nth-child(2) { width: 18%; }
+      .modal-table th:nth-child(3) { width: 34.5%; }
+      .modal-table th:nth-child(4) { width: 34.5%; }
+
+      .modal-table th,
+      .modal-table td {
+        padding: 16px 14px;
+        font-size: 16px;
+        line-height: 1.55;
+      }
     }
 
     .hint {
@@ -1149,6 +1198,8 @@
             </div>
           </div>
           <p class="description" id="modalDescription"></p>
+        </div>
+        <div class="modal-table">
           <div class="installments-title">جدول التقسيط على 4 دفعات شهرية</div>
           <table aria-label="جدول تقسيط الباقة">
             <thead>
@@ -1161,6 +1212,8 @@
             </thead>
             <tbody id="installmentsTable"></tbody>
           </table>
+        </div>
+        <div class="modal-actions">
           <a href="https://www.facebook.com" class="buy-btn" id="modalBuy" target="_blank" rel="noopener noreferrer">شراء الباقة الآن</a>
           <p class="hint">https://www.facebook.com</p>
         </div>
